@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Metal Estructuras</title>
+    <title>Crypto Fighter</title>
 {{--CSS--}}
     @include('layout.partials.styles')
 </head>

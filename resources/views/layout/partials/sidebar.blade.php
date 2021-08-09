@@ -22,13 +22,14 @@
    </div>
    <div class="sidebar-body">
       <ul class="nav">
+         
+         
          <li class="nav-item">
-            <a class="nav-item" data-toggle="collapse" href="/home" role="button" aria-expanded="false"
-               aria-controls=ip>
-            <i class="link-icon" data-feather="terminal"></i>
-            <span class="link-title">All Coins</span>
-            </a>
-         </li>
+                     <a href="/home" class="nav-link ">All Coins</a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="/change-password" class="nav-link "> Change Password</a>
+                  </li>
       </ul>
    </div>
 </nav>

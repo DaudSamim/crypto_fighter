@@ -7,15 +7,21 @@
     "require": {
         "php": "^7.3|^8.0",
         "codenix-sv/coingecko-api": "^1.0",
+        "fabpot/goutte": "^4.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "symfony/panther": "^1.1",
+        "vittominacori/coinmarketcap-php": "^1.1",
+         "longman/telegram-bot": "*"
     },
     "require-dev": {
+        "dbrekelmans/bdi": "^0.3.0",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "laravel/dusk": "^6.16",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
@@ -43,6 +49,12 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+         "post-install-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
+        ],
+        "post-update-cmd": [
+            "PhantomInstaller\\Installer::installPhantomJS"
         ]
     },
     "extra": {
@@ -53,7 +65,8 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+         "bin-dir": "bin"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

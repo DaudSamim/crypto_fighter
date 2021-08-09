@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Codenixsv\CoinGeckoApi\CoinGeckoClient;
 
+// use Goutte\Client;
+use Symfony\Component\Panther\Client;
+use Longman\TelegramBot\Entities\Update;
+
+
 
 class UserController extends Controller
 {
@@ -46,7 +51,7 @@ class UserController extends Controller
            ]);
        }else{
           $this->validate($request, [
-               'smart_chain' => 'required',
+               'smart_chain' => 'required||unique:coins',
            ]);
        }
  
@@ -69,30 +74,9 @@ class UserController extends Controller
                }
          }
  
-         dd($info);
         
  
-         if($request->has('id')){
-             DB::table('coins')->where('id',$request->id)->update([
-               'name' => $request->name,
-               'symbol' => $request->symbol,
-               'description' => $request->description??null,
-               'price' => $request->price??null,
-               'market_cap' => $request->market_cap??null,
-               'volume' => $response->quote->USD->volume_24h??null,
-               'rank' => $response->cmc_rank??null,
-               'launch_date' => $request->launch_date??null,
-               'smart_chain' => $request->smart_chain??null,
-               'website' => $request->website??null,
-               'telegram' => $request->telegram??null,
-               'twitter' => $request->twitter??null,
-               'pancake' => $request->pancake??null,
-               'discord' => $request->discord??null,
-           ]);
- 
-             return redirect('home')->with('success','Successfully Updated');
-         }
-         else{
+        
  
              if ($request->hasFile('logo')) {
                      $image = $request->file('logo');
@@ -119,10 +103,106 @@ class UserController extends Controller
                  'pancake' => $request->pancake??$info['announcement_url'][0]??null,
                  'discord' => $request->discord??$info['chat_url'][0]??null,
              ]);
-         }
+         
  
          return redirect('home')->with('success','Successfully Added a Coin');
     }
  
+    public function test(){
+
+            
+            
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://api.telegram.org/bot1932342379:AAFsJoFtpPI4qJToHzeZhi_30mS6qmvLt1s/getUpdates');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+
+        $headers = array();
+        $headers[] = '';
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        $result = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error:' . curl_error($ch);
+        }
+        curl_close($ch);
+
+        // dd($result);
+        $data = json_decode($result,true)['result'];
+        $data = end($data);
+        $data = $data['channel_post']['text'];
+        // $data = json_last_error();
+        // $data = json_encode($data, JSON_UNESCAPED_SLASHES);
+        // $data = json_decode($data);
+         DB::table('coins')->insert([
+                'name' => $data
+            ]);
+
+        $data = DB::table('coins')->orderBy('id','desc')->pluck('name')->first();
+        $data = explode('Initial', $data);
+        $data[1] = explode('Token', $data[1]);
+        $data[2] = explode('DEXTools:', $data[1][1]);
+
+
+        // dd($data[0],$data[1][0],$data[2][0]);
+        $data[2][0] = str_replace(' contract:','',$data[2][0]);
+        $data[1][0] = str_replace('Liquidity: ','',$data[1][0]);
+        $data[0] = str_replace('🥞 New pair at Pancakeswap V2 🥞','',$data[0]);
+
+        if(DB::table('coins')->where('name',$data[0])->first()){
+            DB::table('coins')->orderBy('id','desc')->limit(1)->delete();
+
+            $res = (object) null;
+            $res->msg = false;
+            return $res;
+        }
+        else{
+             DB::table('coins')->insert([
+            'name' => $data[0],
+            'smart_chain' => $data[2][0],
+            'price' => $data[1][0],
+            ]);
+
+            $id = DB::table('coins')->orderBy('id','desc')->pluck('id')->first();
+            $id--;
+
+            DB::table('coins')->where('id', $id)->delete();
+            $obj = DB::table('coins')->orderBy('id','desc')->first();
+            $res = (object) null;
+            $res->msg = true;
+            $res->data = '<tr class="text-center"><td><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$data[0].'</a></td><td>'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->diffForHumans().'</td><td><i class="fas fa-check-circle text-success font-size-xl"></i></td><td><i class="fas fa-times-circle text-danger font-size-xl"></i></td><td><img src="img/3020989.png" class="img-fluid " style="height: 35px;"
+                                            alt="Waitting">
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
+                                        0
+                                    </td>
+                                    <td>
+                                        <!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
+                                            alt="Waitting"> -->'.$data[1][0].'
+                                            
+                                    </td>
+                                    <td>
+                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
+                                    </td>
+                                    <td>
+                                        <span class="d-flex">
+                                            <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='.$obj->smart_chain.'"><img src="img/face.png" class="img-fluid m-0"></a>
+                                            <a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'" class="text-drbg"> <i
+                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
+                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>';
+
+            // dd($res->data);                    
+            return $res;
+        }
+        
+    }
+
+   
 
 }

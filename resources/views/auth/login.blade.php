@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Metal Estructuras - Login</title>
+    <title>Crypto Fighter - Login</title>
 
     <link rel="stylesheet" href="{{ asset('vendors/core/core.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/feather-font/css/iconfont.css') }}">
@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="auth-form-wrapper px-4 py-5">
-                                    <a href="{{ url('login') }}" class="noble-ui-logo d-block mb-2 text-dark">Metal<span style="color: #9B75A6 !important"> Estructuras</span></a>
+                                    <a href="/" class="noble-ui-logo d-block mb-2 text-dark">Crypto<span style="color: #9B75A6 !important"> Fighter</span></a>
                                     <h5 class="text-muted font-weight-normal mb-4">Log in to your Account Here.</h5>
                                     <form method="post" action="{{ url('login') }}" class="forms-sample">
                                         <div class="form-group">
