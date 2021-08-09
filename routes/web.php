@@ -6,6 +6,10 @@ use Carbon\Carbon;
 
 
 Route::get('test','\App\Http\Controllers\UserController@test');
+Route::get('testing','\App\Http\Controllers\UserController@testing');
+Route::get('testings','\App\Http\Controllers\UserController@testings');
+
+
 Route::middleware('guest')->group(function ()
 {
     // Route::get('/', '\App\Http\Controllers\UserController@getLogin');
