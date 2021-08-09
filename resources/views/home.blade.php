@@ -162,7 +162,7 @@
                             <div class="col-md-12 py-4 pr-4 pl-4">
                                 <div class="row justify-content-center">
                                     <div class="col-md-12 text-left">
-                                        @if(isset($coin)) <h1>{{$coin->name}}</h1> @else @endif
+                                       
                                        <hr>
                                     </div>
                                         <form action="/add_coin" method="post" enctype="multipart/form-data">
@@ -178,7 +178,7 @@
                                        
                                             <div class="form-group">
                                                 <label for="">Binance Smart Chain <small class="text-danger">Required</small></label>
-                                                <input type="text" value="{{$coin->smart_chain ?? ''}}" required name="smart_chain" class="form-control" >
+                                                <input type="text" value="" required name="smart_chain" class="form-control" >
                                             </div>
                                             
                                         

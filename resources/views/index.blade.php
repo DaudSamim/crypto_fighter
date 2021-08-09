@@ -19,69 +19,20 @@
             <div class="left-side-menue">
                 <i class="fas fa-align-justify d-xl-none float-right mr-4 mt-2 font-size-xl pointer-mouse"
                     id="btn-justify"></i>
-                <div class="container-fluid">
-                    <div class="heading-site p-3">
-                        <a href="index.html" class="d-block">
-                            <i class="fas fa-fist-raised  site-color-l"></i>
-                            <h4 class="site-logo-name d-inline-block site-color pl-3 font-weight-bold">Crypto Fighter
-                            </h4>
-                        </a>
+                <div class="">
+                    <!-- filters start -->
+                    <div class="bg-lin py-3 bg-light px-4">
+                        <h4>Filters</h4>
                         <span class="d-inline-block">
-                            <p class="site-color-d font-weight-bold">Find Gems In BSC</p>
+                            <p class="text-white">Find Gems In BSC</p>
                         </span>
                         <span class="float-xl-right ml-3 ml-xl-0 d-inline-block ">
                             <a href="" class=""><i class="fab fa-twitter site-color-l"></i></a>
                             <a href=""> <i class="fab fa-telegram-plane site-color-l"></i></a>
                         </span>
-                    </div>
-                    <div class="donation-box">
-                        <h5 class="font-weight-bold ">Donations (BSC)</h5>
-                        <button class="btn btn-primary  ">0xa282F2F8BEB7D45678....
-                            <i class="fas fa-copy font-size-xs "></i></button>
-                    </div>
-                    <div class="search-box">
-                        <h5 class="font-weight-bold py-2">Search tokens</h5>
-                        <div class="input-group ">
-                            <input type="text"
-                                class="form-control form-control-sm rounded-0 text-primary bg-transparent border-primary"
-                                placeholder="Paste here address" name="token">
-                            <div class="input-group-append">
-                                <button class="btn btn-sm btn-outline-primary" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- footer start -->
-                    <footer class="mt-4 d-none d-xl-block">
-                        <div class="promote-coin py-3">
-                            <a href="" class="btn  btn-sm btn-outline-success d-inline-block rounded-0">Promote Your
-                                Coin</a>
-                            <a href="" class="btn btn-sm btn-primary d-inline-block">Help</a>
-                        </div>
-                        <span class="d-inline-block">
-                            <p class="m-0">© Crypto Fighter Systems</p>
-                        </span>
-                        <span class="float-right d-inline-block">
-                            <a href="" class=""><i class="fab fa-twitter site-color-l"></i></a>
-                            <a href=""> <i class="fab fa-telegram-plane site-color-l"></i></a>
-                        </span>
-                        <small class="d-inline-block site-color-d ">Theme Design by Fastech.com</small>
-                    </footer>
-                </div>
-            </div>
-            <!-- right side main dive start -->
-            <div class="right-side-main float-right pb-5">
-                <div class="">
-                    <!-- add banner  -->
-                    <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
-                    <div class="bg-lin py-3 bg-light">
-                        <h1 class="pl-4 font-weight-bold pointer-mouse pr-5 no-select" title="Click and Show Filter's"
-                            id="filter-btn">Filters <i class="fas fa-arrow-down float-right " id="rotate-180"></i></h1>
-                        <!-- filters start -->
-                        <div class="filters  my-3 " id="filter-parent" style="display: none;">
+                        <div class="filters  my-3 " id="filter-parent">
                             <form action="#">
-                                <div class="filter-select px-5 px-md-0 d-md-flex justify-content-center">
+                                <div class="filter-select ">
                                     <div class="d-flex justify-content-center flex-column ">
                                         <!-- view mode -->
                                         <div class="view p-1">
@@ -179,7 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="select mx-md-5">
+                                    <div class="select">
                                         <div class="select-child-div">
                                             <input type="checkbox" name="Renounced" id=""> <span class=""><i
                                                     class="fas fa-user-alt mr-1 text-white mr-1 ml-2"></i>
@@ -215,6 +166,106 @@
                             </form>
                         </div>
                     </div>
+
+
+                    <!-- <div class="heading-site p-3">
+                        <a href="index.html" class="d-block">
+                            <i class="fas fa-fist-raised  site-color-l"></i>
+                            <h4 class="site-logo-name d-inline-block site-color pl-3 font-weight-bold">Crypto Fighter
+                            </h4>
+                        </a>
+                        <span class="d-inline-block">
+                            <p class="site-color-d font-weight-bold">Find Gems In BSC</p>
+                        </span>
+                        <span class="float-xl-right ml-3 ml-xl-0 d-inline-block ">
+                            <a href="" class=""><i class="fab fa-twitter site-color-l"></i></a>
+                            <a href=""> <i class="fab fa-telegram-plane site-color-l"></i></a>
+                        </span>
+                    </div> -->
+                    <!-- <div class="donation-box">
+                        <h5 class="font-weight-bold ">Donations (BSC)</h5>
+                        <button class="btn btn-primary  ">0xa282F2F8BEB7D45678....
+                            <i class="fas fa-copy font-size-xs "></i></button>
+                    </div> -->
+
+
+                    <!-- <div class="search-box">
+                        <h5 class="font-weight-bold py-2">Search tokens</h5>
+                        <div class="input-group ">
+                            <input type="text"
+                                class="form-control form-control-sm rounded-0 text-primary bg-transparent border-primary"
+                                placeholder="Paste here address" name="token">
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-outline-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- footer start -->
+                    <!-- <footer class="mt-4 d-none d-xl-block">
+                        <div class="promote-coin py-3">
+                            <a href="" class="btn  btn-sm btn-outline-success d-inline-block rounded-0">Promote Your
+                                Coin</a>
+                            <a href="" class="btn btn-sm btn-primary d-inline-block">Help</a>
+                        </div>
+                        <span class="d-inline-block">
+                            <p class="m-0">© Crypto Fighter Systems</p>
+                        </span>
+                        <span class="float-right d-inline-block">
+                            <a href="" class=""><i class="fab fa-twitter site-color-l"></i></a>
+                            <a href=""> <i class="fab fa-telegram-plane site-color-l"></i></a>
+                        </span>
+                        <small class="d-inline-block site-color-d ">Theme Design by Fastech.com</small>
+                    </footer> -->
+                </div>
+            </div>
+            <!-- right side main dive start -->
+            <div class="right-side-main float-right pb-5">
+                <div class="">
+                    <!-- header logo start -->
+                    <div class="bg-lin">
+                        <div class="row px-md-5">
+                            <div class="py-3 col-md-6 ">
+                            <div class="heading-site col-8 ">
+                                <a href="index.html" class="d-block">
+                                    <i class="fas fa-fist-raised  site-color-l"></i>
+                                    <h4 class="site-logo-name d-inline-block site-color pl-3 font-weight-bold">Crypto
+                                        Fighter
+                                    </h4>
+                                </a>
+                            </div>
+                            </div>
+                            <!-- search box start -->
+                            <!-- <div class="bg-lin my-2 "> -->
+                            <div class="col-md-6 py-3 px-4 ">
+                                <div class="search-box row">
+                                    <div class="input-group px-3 px-md-0 ">
+                                        <h5 class="mr-2">Search tokens</h5>
+                                        <input type="text"
+                                            class="form-control form-control-sm rounded-0 text-primary bg-transparent border-primary"
+                                            placeholder="Paste here address" name="token">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-sm btn-outline-primary" type="submit">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                            <!-- search box end -->
+
+                        </div>
+                    </div>
+                    <!-- header logo end -->
+
+                    <!-- add banner  -->
+                    <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
+                    <!-- filter place empty now  -->
+
+
                     <!-- table start -->
                     <div class="table-div overflow-auto">
                         <table class="table text-white text-left">
@@ -243,10 +294,12 @@
                                 </tr>
                             </thead>
                             <!-- table body start -->
-                            <tbody>
-                                <tr>
-                                    <td><a href="">FlokiPop</a></td>
-                                    <td>00:00:28</td>
+                            <tbody  id="myTable">
+                               
+                                @foreach($coins as $row)
+                                <tr class="text-center">
+                                    <td><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$row->name}}</a></td>
+                                    <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($row->created_at))->diffForHumans()}}</td>
                                     <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
                                     <td>
                                         <i class="fas fa-times-circle text-danger font-size-xl"></i>
@@ -260,487 +313,50 @@
                                         0
                                     </td>
                                     <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
+                                        <!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
+                                            alt="Waitting"> -->
+                                            {{$row->price}}
                                     </td>
                                     <td>
                                         <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
                                     </td>
                                     <td>
                                         <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
+                                            <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency={{$row->smart_chain}}"><img src="img/face.png" class="img-fluid m-0"></a>
+                                            <a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}" class="text-drbg"> <i
                                                     class="fas fa-poo font-size-xl mx-2"></i></a>
                                             <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
                                         </span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td><a href="">TestDontBuy</a></td>
-                                    <td>00:00:31</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ban font-size-xl text-dark"></i>
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-dark"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">FlokiPop</a></td>
-                                    <td>00:00:28</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-desktop font-size-xl text-primary"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">TestDontBuy</a></td>
-                                    <td>00:00:31</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ban font-size-xl text-dark"></i>
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-dark"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">FlokiPop</a></td>
-                                    <td>00:00:28</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">TestDontBuy</a></td>
-                                    <td>00:00:31</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ban font-size-xl text-dark"></i>
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-dark"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">FlokiPop</a></td>
-                                    <td>00:00:28</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">TestDontBuy</a></td>
-                                    <td>00:00:31</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ban font-size-xl text-dark"></i>
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-dark"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">FlokiPop</a></td>
-                                    <td>00:00:28</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">TestDontBuy</a></td>
-                                    <td>00:00:31</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ban font-size-xl text-dark"></i>
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-dark"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">FlokiPop</a></td>
-                                    <td>00:00:28</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">TestDontBuy</a></td>
-                                    <td>00:00:31</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ban font-size-xl text-dark"></i>
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-dark"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">FlokiPop</a></td>
-                                    <td>00:00:28</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">TestDontBuy</a></td>
-                                    <td>00:00:31</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ban font-size-xl text-dark"></i>
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-dark"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">FlokiPop</a></td>
-                                    <td>00:00:28</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">TestDontBuy</a></td>
-                                    <td>00:00:31</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-ban font-size-xl text-dark"></i>
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-dark"></i></a>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex">
-                                            <a href=""><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a href="" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
-                                        </span>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        <!-- pagination start -->
+                        <nav aria-label="...">
+                            <ul class="pagination">
+                                <li class="page-item disabled">
+                                    <span class="page-link bg-site-dark site-color-l">Previous</span>
+                                </li>
+                                <li class="page-item "><a class="page-link bg-site-dark site-color-l mx-2" href="#">1</a>
+                                </li>
+                                <li class="page-item active" aria-current="page">
+                                    <span class="page-link  ">2</span>
+                                </li>
+                                <li class="page-item"><a class="page-link bg-site-dark site-color-l mx-2" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link bg-site-dark site-color-l" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- pagination end -->
                         <!-- add banner -->
                         <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
                     </div>
                     <!-- <div class="bg-dark p-3 text-center">No data available in table</div> -->
                 </div>
                 <div class="">
-                    <footer class="mt-4 di-none text-center bg-dark py-3">
+                    <footer class="mt-4  text-center bg-site-dark py-3">
                         <div class="promote-coin py-3">
                             <a href="" class="btn  btn-sm btn-outline-success d-inline-block rounded-0">Promote Your
                                 Coin</a>
@@ -772,6 +388,22 @@
                 $(".left-side-menue").toggleClass('h-100');
             });
         });
+
+        setInterval(function(){
+            $.ajax({
+                type:'GET',
+                url:'/test',
+                data:{_token: "{{ csrf_token() }}"
+                },
+                success: function( res ) {
+                    if(res.msg == true){
+                        $('#myTable tr:first').before(res.data);
+                         
+                    }
+                }
+            });
+
+        },3000);
     </script>
 </body>
 

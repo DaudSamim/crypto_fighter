@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="auth-form-wrapper px-4 py-5">
-                                    <a href="{{ url('login') }}" class="noble-ui-logo d-block mb-2 text-dark">Crypto<span style="color: #9B75A6 !important"> Fighter</span></a>
+                                    <a href="/" class="noble-ui-logo d-block mb-2 text-dark">Crypto<span style="color: #9B75A6 !important"> Fighter</span></a>
                                     <h5 class="text-muted font-weight-normal mb-4">Log in to your Account Here.</h5>
                                     <form method="post" action="{{ url('login') }}" class="forms-sample">
                                         <div class="form-group">

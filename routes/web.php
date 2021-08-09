@@ -4,13 +4,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+
+Route::get('test','\App\Http\Controllers\UserController@test');
 Route::middleware('guest')->group(function ()
 {
-    Route::get('/', '\App\Http\Controllers\UserController@getLogin');
-    Route::get('/index', function ()
+    // Route::get('/', '\App\Http\Controllers\UserController@getLogin');
+    Route::get('/', function ()
     {
-        
-        return view('index');
+        $coins = DB::table('coins')->orderBy('id','desc')->limit(10)->get();
+        return view('index',compact('coins'));
     });
     Route::get('/login', '\App\Http\Controllers\UserController@getLogin')
         ->name('login');
