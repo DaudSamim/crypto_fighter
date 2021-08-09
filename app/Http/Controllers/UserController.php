@@ -29,7 +29,7 @@ class UserController extends Controller
 
         if (Auth::guard('web')->attempt(['username' => $request['username'], 'password' => $request['password']]))
         {
-           
+
             return redirect('/home');
         }
         else return redirect()->back()->with('info', "Incorrect username or password");
@@ -44,7 +44,7 @@ class UserController extends Controller
 
 
         if(!$request->has('id')){
-           $this->validate($request, [ 
+           $this->validate($request, [
                'smart_chain' => 'required|unique:coins',
            ]);
        }else{
@@ -52,8 +52,8 @@ class UserController extends Controller
                'smart_chain' => 'required||unique:coins',
            ]);
        }
- 
-         // Code for coin validation 
+
+         // Code for coin validation
 
          $client = new CoinGeckoClient();
          $data = $client->derivatives()->getExchanges();
@@ -71,18 +71,18 @@ class UserController extends Controller
                    return redirect()->back()->with('alert','Please enter valid Smart Chain Contact Address');
                }
          }
- 
-        
- 
-        
- 
+
+
+
+
+
              if ($request->hasFile('logo')) {
                      $image = $request->file('logo');
                      $filename =  time().'.'.$image->getClientOriginalExtension();
                      $destinationPath = public_path();
                      $image->move($destinationPath, $filename);
                }
- 
+
              DB::table('coins')->insert([
                  'name' => $request->name??$info['name'],
                  'user_id' => auth()->user()->id,
@@ -101,18 +101,16 @@ class UserController extends Controller
                  'pancake' => $request->pancake??$info['announcement_url'][0]??null,
                  'discord' => $request->discord??$info['chat_url'][0]??null,
              ]);
-         
- 
+
+
          return redirect('home')->with('success','Successfully Added a Coin');
     }
- 
-    public function test(){
 
-            
-            
+    public function test()
+    {
+
         $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, 'https://api.telegram.org/bot1932342379:AAFsJoFtpPI4qJToHzeZhi_30mS6qmvLt1s/getUpdates');
+        curl_setopt($ch, CURLOPT_URL, 'https://api.telegram.org/bot1948749330:AAHXw2bkqClqRJ6KyUWqH4tgU4EYmRzHHfE/getUpdates');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
@@ -129,6 +127,7 @@ class UserController extends Controller
 
         // dd($result);
         $data = json_decode($result,true)['result'];
+
         $data = end($data);
         $data = $data['channel_post']['text'];
         // $data = json_last_error();
@@ -180,7 +179,7 @@ class UserController extends Controller
                                     <td>
                                         <!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
                                             alt="Waitting"> -->'.$data[1][0].'
-                                            
+
                                     </td>
                                     <td>
                                         <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
@@ -195,12 +194,10 @@ class UserController extends Controller
                                     </td>
                                 </tr>';
 
-            // dd($res->data);                    
+            // dd($res->data);
             return $res;
         }
-        
-    }
 
-   
+    }
 
 }

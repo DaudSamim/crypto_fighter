@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +25,7 @@ Route::middleware('auth:web')->group(function ()
 {
 
     // Route::get('/home', '\App\Http\Controllers\HomeController@getHome');
-    
+
 
     Route::get('/home', function ()
     {
@@ -32,17 +34,17 @@ Route::middleware('auth:web')->group(function ()
     });
     Route::get('/Add-coin', function ()
     {
-        
+
         return view('add_coin');
     });
     Route::get('/change-password', function ()
     {
-        
+
         return view('password');
     });
     Route::get('/logout', '\App\Http\Controllers\UserController@getLogout');
 
-    Route::post('add_coin','\App\Http\Controllers\UserController@postAddCoin');   
+    Route::post('add_coin','\App\Http\Controllers\UserController@postAddCoin');
 
 });
 
