@@ -268,7 +268,7 @@
 
                     <!-- table start -->
                     <div class="table-div overflow-auto">
-                        <table class="table text-white text-left">
+                        <table class="table text-white text-left" id="paginate">
                             <!-- table head start -->
                             <thead class="font-weight-lighter">
                                 <tr>
@@ -295,7 +295,7 @@
                             </thead>
                             <!-- table body start -->
                             <tbody  id="myTable">
-                               
+
                                 @foreach($coins as $row)
                                 <tr class="text-center">
                                     <td><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$row->name}}</a></td>
@@ -377,6 +377,9 @@
     </main>
     <!-- j-query cdn-link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#filter-btn").click(function () {
@@ -398,12 +401,17 @@
                 success: function( res ) {
                     if(res.msg == true){
                         $('#myTable tr:first').before(res.data);
-                         
+
+
                     }
                 }
             });
 
         },3000);
+
+        $('#paginate').dataTable( {
+
+        } );
     </script>
 </body>
 
