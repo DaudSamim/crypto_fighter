@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 
-Route::get('test','\App\Http\Controllers\UserController@test');
+Route::get('test','\App\Http\Controllers\UserController@testing');
 Route::get('testing','\App\Http\Controllers\UserController@testing');
 Route::get('testings','\App\Http\Controllers\UserController@testings');
 

@@ -205,23 +205,12 @@ class UserController extends Controller
             // dd($res->data);
             return $res;
         }
-        
+
     }
     public function testing(){
-        
 
-        
-            $bot_api_key  = '1928834633:AAEVUaOwT6XKiv4rdS7z73eoOhFNnXyniVA';
-            $bot_username = 'saddddbot';
-
-            $mysql_credentials = [
-               'host'     => 'localhost',
-               'port'     => 3306, // optional
-               'user'     => 'dbuser',
-               'password' => 'dbpass',
-               'database' => 'dbname',
-            ];
-
+        $bot_api_key  = '1912510906:AAGxcy3Ie_LAKAjPllp6ONzeqojZUD2q668';
+        $bot_username = 'jackspparowbot';
             try {
                 // Create Telegram API object
                 $telegram = new \Longman\TelegramBot\Telegram($bot_api_key, $bot_username);
@@ -231,20 +220,21 @@ class UserController extends Controller
 
                 // Handle telegram getUpdates request
                 $data = $telegram->handleGetUpdates();
-                dd($data);
+                // dd($data);
+        if(!empty($data->result)){
+
                 DB::table('coins')->insert([
-                    'name' => $data->result
+                    'name' => $data->result[0]->channel_post['text']
                 ]);
                 $data = DB::table('coins')->orderBy('id','desc')->pluck('name')->first();
                 $data = explode('Initial', $data);
-        $data[1] = explode('Token', $data[1]);
-        $data[2] = explode('DEXTools:', $data[1][1]);
+                $data[1] = explode('Token', $data[1]);
+                $data[2] = explode('DEXTools:', $data[1][1]);
 
-
-        // dd($data[0],$data[1][0],$data[2][0]);
-        $data[2][0] = str_replace(' contract:','',$data[2][0]);
-        $data[1][0] = str_replace('Liquidity: ','',$data[1][0]);
-        $data[0] = str_replace('🥞 New pair at Pancakeswap V2 🥞','',$data[0]);
+            // dd($data[0],$data[1][0],$data[2][0]);
+            $data[2][0] = str_replace(' contract:','',$data[2][0]);
+            $data[1][0] = str_replace('Liquidity: ','',$data[1][0]);
+            $data[0] = str_replace('🥞 New pair at Pancakeswap V2 🥞','',$data[0]);
 
         if(DB::table('coins')->where('name',$data[0])->first()){
             DB::table('coins')->orderBy('id','desc')->limit(1)->delete();
@@ -277,7 +267,7 @@ class UserController extends Controller
                                     <td>
                                         <!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
                                             alt="Waitting"> -->'.$data[1][0].'
-                                            
+
                                     </td>
                                     <td>
                                         <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
@@ -292,23 +282,25 @@ class UserController extends Controller
                                     </td>
                                 </tr>';
 
-            // dd($res->data);                    
+            // dd($res->data);
             return $res;
         }
 
-                
+    }else{
+        return 'nothing';
+    }
 
                 // $updates = $telegram->getWebhookUpdates();
                 // dd($updates);
 
             } catch (Longman\TelegramBot\Exception\TelegramException $e) {
-                // log telegram errors
+
                 echo $e->getMessage();
             }
 
 
     }
 
-    
+
 
 }
