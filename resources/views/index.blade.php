@@ -409,9 +409,9 @@
 
         },30000);
 
-        $('#paginate').dataTable( {
+        // $('#paginate').dataTable( {
 
-        } );
+        // } );
     </script>
 </body>
 
