@@ -257,7 +257,10 @@ class UserController extends Controller
             $obj = DB::table('coins')->orderBy('id','desc')->first();
             $res = (object) null;
             $res->msg = true;
-            $res->data = '<tr class="text-center"><td><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$data[0].'</a></td><td>'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->diffForHumans().'</td><td><i class="fas fa-check-circle text-success font-size-xl"></i></td><td><i class="fas fa-times-circle text-danger font-size-xl"></i></td><td><img src="img/3020989.png" class="img-fluid " style="height: 35px;"
+            $name= explode("(",$data[0]);
+
+
+            $res->data = '<tr class="text-center"><td><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$name[0].'</a></td><td>'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->diffForHumans().'</td><td><i class="fas fa-check-circle text-success font-size-xl"></i></td><td><i class="fas fa-times-circle text-danger font-size-xl"></i></td><td><img src="img/3020989.png" class="img-fluid " style="height: 35px;"
                                             alt="Waitting">
                                     </td>
                                     <td>
@@ -273,11 +276,10 @@ class UserController extends Controller
                                         <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
                                     </td>
                                     <td>
-                                        <span class="d-flex">
-                                            <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='.$obj->smart_chain.'"><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
+                                        <span>
+                                            <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='.$obj->smart_chain.'"><button class="btn btn-warning">Buy on Pancakeswap</button></a>
+                                            <a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'" class="text-drbg"> <button style="padding: 7px 36px 5px 42px;margin-top: 6px;" class="btn btn-warning">Watch Chart</button></a>
+                                            
                                         </span>
                                     </td>
                                 </tr>';

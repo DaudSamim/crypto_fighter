@@ -297,8 +297,12 @@
                             <tbody  id="myTable">
 
                                 @foreach($coins as $row)
+                                <?php
+                               $name= explode("(",$row->name);
+
+                                ?>
                                 <tr class="text-center">
-                                    <td><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$row->name}}</a></td>
+                                    <td><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$name[0]}}</a></td>
                                     <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($row->created_at))->diffForHumans()}}</td>
                                     <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
                                     <td>
@@ -321,11 +325,10 @@
                                         <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
                                     </td>
                                     <td>
-                                        <span class="d-flex">
-                                            <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency={{$row->smart_chain}}"><img src="img/face.png" class="img-fluid m-0"></a>
-                                            <a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}" class="text-drbg"> <i
-                                                    class="fas fa-poo font-size-xl mx-2"></i></a>
-                                            <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>
+                                        <span>
+                                            <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency={{$row->smart_chain}}"><button class="btn btn-warning">Buy on Pancakeswap</button></a>
+                                            <a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}" class="text-drbg"><button style="padding: 7px 36px 5px 42px;margin-top: 6px;" class="btn btn-warning">Watch Chart</button></a>
+                                            {{--  <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>  --}}
                                         </span>
                                     </td>
                                 </tr>
@@ -409,9 +412,12 @@
 
         },30000);
 
-        // $('#paginate').dataTable( {
 
-        // } );
+
+    $('#paginate').DataTable({
+
+        });
+
     </script>
 </body>
 
