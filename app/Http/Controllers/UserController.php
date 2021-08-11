@@ -276,31 +276,39 @@ class UserController extends Controller
                                         <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
                                     </td>
                                     <td>
-                                        <span>
-                                            <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='.$obj->smart_chain.'"><button class="btn btn-warning">Buy on Pancakeswap</button></a>
-                                            <a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'" class="text-drbg"> <button style="padding: 7px 36px 5px 42px;margin-top: 6px;" class="btn btn-warning">Watch Chart</button></a>
-                                            
-                                        </span>
+                                    <span class="d-flex flex-row">
+                                    <div class="">
+
+                                        <div class="bg-warning my-1 d-block px-2 py-1 rounded">
+                                        <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='.$obj->smart_chain.'" class="text-drbg" >
+                                        Buy on Pancakeswap
+                                        </a>
+                                </div>
+                                <div class="bg-warning my-1 d-block px-2 py-1 rounded">
+                                    <a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'" class="text-drbg">
+                                        Watch Chart
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="pt-4 pl-3">
+                                <a href=""><i
+                                        class="fas fa-share-alt text-primary font-size-xl"></i></a>
+                            </div>
+                        </span>
                                     </td>
                                 </tr>';
-
-            // dd($res->data);
             return $res;
         }
 
-    }else{
-        return 'nothing';
-    }
+        }else{
+            return 'nothing';
+        }
 
-                // $updates = $telegram->getWebhookUpdates();
-                // dd($updates);
 
-            } catch (Longman\TelegramBot\Exception\TelegramException $e) {
-
+            } catch (Longman\TelegramBot\Exception\TelegramException $e)
+            {
                 echo $e->getMessage();
             }
-
-
     }
 
 

@@ -11,6 +11,34 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
     <title>Crypto Fighter System</title>
+    <style>
+
+          .pagination li:hover{
+              cursor: pointer;
+          }
+          .pagination li{
+              margin-left:.5rem;
+            background: purple ;
+
+            border: 2px solid white;
+            -webkit-user-select: none !important;
+          }
+          li span{
+            margin: 0px 7px 0px 7px;
+          }
+          .active{
+            background: #007bff !important;
+            border: 2px solid #007bff !important;
+          }
+
+          .rows_count {
+            width: 20%;
+            margin-top: -40px;
+            float: right;
+            color: white;
+          }
+
+    </style>
 </head>
 
 <body>
@@ -192,7 +220,7 @@
                     <!-- <div class="search-box">
                         <h5 class="font-weight-bold py-2">Search tokens</h5>
                         <div class="input-group ">
-                            <input type="text"
+                            <input  type="text"
                                 class="form-control form-control-sm rounded-0 text-primary bg-transparent border-primary"
                                 placeholder="Paste here address" name="token">
                             <div class="input-group-append">
@@ -243,14 +271,15 @@
                                 <div class="search-box row">
                                     <div class="input-group px-3 px-md-0 ">
                                         <h5 class="mr-2">Search tokens</h5>
-                                        <input type="text"
+                                        <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()"
                                             class="form-control form-control-sm rounded-0 text-primary bg-transparent border-primary"
                                             placeholder="Paste here address" name="token">
-                                        <div class="input-group-append">
+                                        {{--  <div class="input-group-append">
                                             <button class="btn btn-sm btn-outline-primary" type="submit">
                                                 <i class="fas fa-search"></i>
                                             </button>
-                                        </div>
+                                        </div>  --}}
+
                                     </div>
                                 </div>
                             </div>
@@ -265,15 +294,24 @@
                     <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
                     <!-- filter place empty now  -->
 
+                    <select class="form-control" style="width: 7%;margin-bottom: 1%;" id="maxRows">
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="70">70</option>
+                        <option value="100">100</option>
+                        <option value="5000">ALL</option>
+                       </select>
 
                     <!-- table start -->
-                    <div class="table-div overflow-auto">
-                        <table class="table text-white text-left" id="paginate">
+                    <div class="table-responsive ">
+                        <table class="table text-white text-left table-striped table-class" id= "table-id">
                             <!-- table head start -->
                             <thead class="font-weight-lighter">
                                 <tr>
                                     <th>Token</th>
-                                    <th>Age
+                                    <th style="min-width: 90px;">Age
                                         <span class="float-right">
                                             <i class="fas fa-long-arrow-alt-up text-secondary m-0"></i>
                                             <i class="fas fa-long-arrow-alt-down text-secondary m-0"></i>
@@ -282,7 +320,7 @@
                                     <th>Code</th>
                                     <th>Owner</th>
                                     <th>Seller</th>
-                                    <th>Holders
+                                    <th style="min-width: 100px">Holders
                                         <span class="float-right">
                                             <i class="fas fa-long-arrow-alt-up text-secondary m-0"></i>
                                             <i class="fas fa-long-arrow-alt-down text-secondary m-0"></i>
@@ -324,35 +362,38 @@
                                     <td>
                                         <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
                                     </td>
-                                    <td>
-                                        <span>
-                                            <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency={{$row->smart_chain}}"><button class="btn btn-warning">Buy on Pancakeswap</button></a>
-                                            <a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}" class="text-drbg"><button style="padding: 7px 36px 5px 42px;margin-top: 6px;" class="btn btn-warning">Watch Chart</button></a>
-                                            {{--  <a href=""><i class="fas fa-share-alt text-primary font-size-xl"></i></a>  --}}
+                                    <td style="min-width: 210px;">
+                                        <span class="d-flex flex-row">
+                                            <div class="">
+
+                                                <div class="bg-warning my-1 d-block px-2 py-1 rounded">
+                                                    <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='{{$row->smart_chain}}'" class="text-drbg" >
+                                                        Buy on Pancakeswap
+                                                        </a>
+                                                </div>
+                                                <div class="bg-warning my-1 d-block px-2 py-1 rounded">
+                                                    <a target="_blank" href="https://poocoin.app/tokens/'{{$row->smart_chain}}'" class="text-drbg">
+                                                        Watch Chart
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="pt-4 pl-3">
+                                                <a href=""><i
+                                                        class="fas fa-share-alt text-primary font-size-xl"></i></a>
+                                            </div>
                                         </span>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <!-- pagination start -->
-                        <nav aria-label="...">
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                    <span class="page-link bg-site-dark site-color-l">Previous</span>
-                                </li>
-                                <li class="page-item "><a class="page-link bg-site-dark site-color-l mx-2" href="#">1</a>
-                                </li>
-                                <li class="page-item active" aria-current="page">
-                                    <span class="page-link  ">2</span>
-                                </li>
-                                <li class="page-item"><a class="page-link bg-site-dark site-color-l mx-2" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link bg-site-dark site-color-l" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <!-- pagination end -->
+                        <!--		Start Pagination -->
+                        <div class='pagination-container'>
+                            <nav>
+                              <ul class="pagination">
+                              </ul>
+                            </nav>
+                        </div>
                         <!-- add banner -->
                         <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
                     </div>
@@ -380,9 +421,7 @@
     </main>
     <!-- j-query cdn-link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $("#filter-btn").click(function () {
@@ -413,9 +452,139 @@
         },30000);
 
 
-    $('#paginate').DataTable({
+    </script>
+ <script>
+    getPagination('#table-id');
+	$('#maxRows').trigger('change');
+	function getPagination (table){
 
-        });
+		  $('#maxRows').on('change',function(){
+		  	$('.pagination').html('');						// reset pagination div
+		  	var trnum = 0 ;									// reset tr counter
+		  	var maxRows = parseInt($(this).val());			// get Max Rows from select option
+
+		  	var totalRows = $(table+' tbody tr').length;		// numbers of rows
+			 $(table+' tr:gt(0)').each(function(){			// each TR in  table and not the header
+			 	trnum++;									// Start Counter
+			 	if (trnum > maxRows ){						// if tr number gt maxRows
+
+			 		$(this).hide();							// fade it out
+			 	}if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
+			 });											//  was fade out to fade it in
+			 if (totalRows > maxRows){						// if tr total rows gt max rows option
+			 	var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..
+			 												//	numbers of pages
+			 	for (var i = 1; i <= pagenum ;){			// for each page append pagination li
+			 	$('.pagination').append('<li data-page="'+i+'">\
+								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
+								    </li>').show();
+			 	}											// end for i
+
+
+			} 												// end if row count > max rows
+			$('.pagination li:first-child').addClass('active'); // add active class to the first li
+
+
+        //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
+       showig_rows_count(maxRows, 1, totalRows);
+        //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
+
+        $('.pagination li').on('click',function(e){		// on click each page
+        e.preventDefault();
+				var pageNum = $(this).attr('data-page');	// get it's number
+				var trIndex = 0 ;							// reset tr counter
+				$('.pagination li').removeClass('active');	// remove active class from all li
+				$(this).addClass('active');					// add active class to the clicked
+
+
+        //SHOWING ROWS NUMBER OUT OF TOTAL
+       showig_rows_count(maxRows, pageNum, totalRows);
+        //SHOWING ROWS NUMBER OUT OF TOTAL
+
+
+
+				 $(table+' tr:gt(0)').each(function(){		// each tr in table not the header
+				 	trIndex++;								// tr index counter
+				 	// if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+				 	if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+				 		$(this).hide();
+				 	}else {$(this).show();} 				//else fade in
+				 }); 										// end of for each tr in table
+					});										// end of on click pagination list
+		});
+											// end of on select change
+
+								// END OF PAGINATION
+
+	}
+
+
+
+
+// SI SETTING
+$(function(){
+	// Just to append id number for each row
+default_index();
+
+});
+
+//ROWS SHOWING FUNCTION
+function showig_rows_count(maxRows, pageNum, totalRows) {
+   //Default rows showing
+        var end_index = maxRows*pageNum;
+        var start_index = ((maxRows*pageNum)- maxRows) + parseFloat(1);
+        var string = 'Showing '+ start_index + ' to ' + end_index +' of ' + totalRows + ' entries';
+        $('.rows_count').html(string);
+}
+
+
+
+// All Table search script
+function FilterkeyWord_all_table() {
+
+// Count td if you want to search on all table instead of specific column
+
+  var count = $('.table').children('tbody').children('tr:first-child').children('td').length;
+
+        // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("search_input_all");
+  var input_value =     document.getElementById("search_input_all").value;
+        filter = input.value.toLowerCase();
+  if(input_value !=''){
+        table = document.getElementById("table-id");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 1; i < tr.length; i++) {
+
+          var flag = 0;
+
+          for(j = 0; j < count; j++){
+            td = tr[i].getElementsByTagName("td")[j];
+            if (td) {
+
+                var td_text = td.innerHTML;
+                if (td.innerHTML.toLowerCase().indexOf(filter) > -1) {
+                //var td_text = td.innerHTML;
+                //td.innerHTML = 'shaban';
+                  flag = 1;
+                } else {
+                  //DO NOTHING
+                }
+              }
+            }
+          if(flag==1){
+                     tr[i].style.display = "";
+          }else {
+             tr[i].style.display = "none";
+          }
+        }
+    }else {
+      //RESET TABLE
+      $('#maxRows').trigger('change');
+    }
+}
 
     </script>
 </body>
