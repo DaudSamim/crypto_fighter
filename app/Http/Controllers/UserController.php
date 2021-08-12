@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Codenixsv\CoinGeckoApi\CoinGeckoClient;
-
-
-
+// use Codenixsv\CoinGeckoApi\CoinGeckoClient;
+use Curl\Curl;
+use Goutte\Client;
+use Symfony\Component\HttpClient\HttpClient;
 // use Goutte\Client;
-use Symfony\Component\Panther\Client;
+// use Symfony\Component\Panther\Client;
 use Longman\TelegramBot\Entities\Update;
 use Telegram\Bot\Api;
 
@@ -312,5 +312,39 @@ class UserController extends Controller
     }
 
 
+        public function webscrap()
+        {
+
+            $token='0xba2ae424d960c26247dd6c32edc70b295c744c43';
+           
+            $client = new Client();
+            $client = new Client(HttpClient::create(['timeout' => 60]));
+            $crawler = $client->request('GET', 'https://bscscan.com/token/'.$token);
+
+
+            $key=null;
+          $text=  $crawler->filter('div[class="card-body"]')->text();
+                $data=explode(' ',$text);
+                $target = "Holders:";
+                if (in_array($target, $data)) {
+                    $key = array_search($target, $data);
+                }
+
+                $holders = $data[$key+1];
+
+                // $urls=  $crawler->filter('ul[class="list-inline mb-0"]')->text();
+                // dd($urls);
+
+
+         $crawler->filter('a[class="link-hover-secondary"][href]')->each(function ($node) {
+              $hrefs = $node->attr('href');
+        dd($hrefs);
+            });
+
+
+
+
+
+    }
 
 }

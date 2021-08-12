@@ -20,6 +20,8 @@ Route::middleware('guest')->group(function ()
         $coins = DB::table('coins')->orderBy('id','desc')->get();
         return view('index',compact('coins'));
     });
+    Route::get('/web', '\App\Http\Controllers\UserController@webscrap')
+    ->name('web');
     Route::get('/login', '\App\Http\Controllers\UserController@getLogin')
         ->name('login');
     Route::post('/login', '\App\Http\Controllers\UserController@postLogin');

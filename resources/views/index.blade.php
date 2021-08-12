@@ -452,12 +452,15 @@
         },30000);
 
 
+
     </script>
  <script>
     getPagination('#table-id');
 	$('#maxRows').trigger('change');
 	function getPagination (table){
 
+
+    $('#paginate').DataTable({
 		  $('#maxRows').on('change',function(){
 		  	$('.pagination').html('');						// reset pagination div
 		  	var trnum = 0 ;									// reset tr counter
