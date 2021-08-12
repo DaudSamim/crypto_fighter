@@ -316,15 +316,16 @@ class UserController extends Controller
         {
 
             $token='0xba2ae424d960c26247dd6c32edc70b295c744c43';
-           
+
             $client = new Client();
             $client = new Client(HttpClient::create(['timeout' => 60]));
             $crawler = $client->request('GET', 'https://bscscan.com/token/'.$token);
 
-
             $key=null;
-          $text=  $crawler->filter('div[class="card-body"]')->text();
-                $data=explode(' ',$text);
+            $text=  $crawler->filter('div[class="card-body"]')->text();
+            $data=explode(' ',$text);
+
+
                 $target = "Holders:";
                 if (in_array($target, $data)) {
                     $key = array_search($target, $data);
@@ -332,16 +333,28 @@ class UserController extends Controller
 
                 $holders = $data[$key+1];
 
-                // $urls=  $crawler->filter('ul[class="list-inline mb-0"]')->text();
-                // dd($urls);
+                $official=  $crawler->filter('div[id="ContentPlaceHolder1_tr_officialsite_1"]')->text();
+                $oficial_site=explode(' ',$official);
 
 
-         $crawler->filter('a[class="link-hover-secondary"][href]')->each(function ($node) {
-              $hrefs = $node->attr('href');
-        dd($hrefs);
+               if($oficial_site[2] !=null)
+               {
+                $site_url= $oficial_site[2];
+                     }
+
+
+         $crawler->filter('a[class="link-hover-secondary"]')->each(function ($node) {
+        $hrefs = $node->extract(array('href'));
+
             });
+         $links = $crawler->filter('a[class="link-hover-secondary"]')->each(function($node) {
+        $href  = $node->attr('href');
+        $title = $node->attr('title');
+        $text  = $node->text();
 
-
+        return compact('href', 'title', 'text');
+    });
+    dd($links);
 
 
 
