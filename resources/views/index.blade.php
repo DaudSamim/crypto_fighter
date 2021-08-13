@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
-    <title>Crypto Fighter System</title>
+     <link rel="icon" type="image/png" href="images/logo.png"/>
+    <title>MrChecker</title>
+
     <style>
 
           .pagination li:hover{
@@ -257,10 +259,9 @@
                         <div class="row px-md-5">
                             <div class="py-3 col-md-6 ">
                             <div class="heading-site col-8 ">
-                                <a href="index.html" class="d-block">
-                                    <i class="fas fa-fist-raised  site-color-l"></i>
-                                    <h4 class="site-logo-name d-inline-block site-color pl-3 font-weight-bold">Crypto
-                                        Fighter
+                                <a href="/" class="d-block">
+                                    <img src="images/logo.png" style="max-width:20%">
+                                    <h4 class="site-logo-name d-inline-block site-color pl-3 font-weight-bold">MrChecker
                                     </h4>
                                 </a>
                             </div>
@@ -339,9 +340,9 @@
                                 $check= Session::get('check');
                                 $name= explode("(",$check->name);
                                 ?>
-                                <tr class="text-center">
+                                <tr style="background-color: red" class="text-center">
                                     <td><a target="_blank" href="https://poocoin.app/tokens/{{$check->smart_chain}}">{{$name[0]}}</a></td>
-                                    <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($check->created_at))->diffForHumans()}}</td>
+                                    <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($check->created_at))->addHour(7)->diffForHumans()}}</td>
                                     <td><a target="_blank" href="https://bscscan.com/address/{{ $check->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
                                     <td><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $check->smart_chain }}&v={{ $check->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
                                     <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
@@ -381,7 +382,7 @@
                                 ?>
                                 <tr class="text-center">
                                     <td><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$name[0]}}</a></td>
-                                    <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($row->created_at))->diffForHumans()}}</td>
+                                    <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($row->created_at))->addHour(7)->diffForHumans()}}</td>
                                     <td><a target="_blank" href="https://bscscan.com/address/{{ $row->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
                                     <td><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $row->smart_chain }}&v={{ $row->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
                                     <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
@@ -436,7 +437,7 @@
                             }
 
                             </script>
-                        <!--		Start Pagination -->
+                        <!--        Start Pagination -->
                         <div class='pagination-container'>
                             <nav>
                               <ul class="pagination">
@@ -456,7 +457,7 @@
                             <a href="" class="btn btn-sm btn-primary d-inline-block">Help</a>
                         </div>
                         <span class="d-inline-block mx-auto">
-                            <p class="m-0">© Crypto Fighter Systems</p>
+                            <p class="m-0">© MrCheckers</p>
                         </span>
                         <span class="d-inline-block">
                             <a href="" class=""><i class="fab fa-twitter site-color-l"></i></a>
@@ -498,55 +499,55 @@
                 }
             });
 
-        },30000);
+        },10000);
 
 
 
     </script>
  <script>
     getPagination('#table-id');
-	$('#maxRows').trigger('change');
-	function getPagination (table){
+    $('#maxRows').trigger('change');
+    function getPagination (table){
 
 
     $('#paginate').DataTable({
-		  $('#maxRows').on('change',function(){
-		  	$('.pagination').html('');						// reset pagination div
-		  	var trnum = 0 ;									// reset tr counter
-		  	var maxRows = parseInt($(this).val());			// get Max Rows from select option
+          $('#maxRows').on('change',function(){
+            $('.pagination').html('');                      // reset pagination div
+            var trnum = 0 ;                                 // reset tr counter
+            var maxRows = parseInt($(this).val());          // get Max Rows from select option
 
-		  	var totalRows = $(table+' tbody tr').length;		// numbers of rows
-			 $(table+' tr:gt(0)').each(function(){			// each TR in  table and not the header
-			 	trnum++;									// Start Counter
-			 	if (trnum > maxRows ){						// if tr number gt maxRows
+            var totalRows = $(table+' tbody tr').length;        // numbers of rows
+             $(table+' tr:gt(0)').each(function(){          // each TR in  table and not the header
+                trnum++;                                    // Start Counter
+                if (trnum > maxRows ){                      // if tr number gt maxRows
 
-			 		$(this).hide();							// fade it out
-			 	}if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
-			 });											//  was fade out to fade it in
-			 if (totalRows > maxRows){						// if tr total rows gt max rows option
-			 	var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..
-			 												//	numbers of pages
-			 	for (var i = 1; i <= pagenum ;){			// for each page append pagination li
-			 	$('.pagination').append('<li data-page="'+i+'">\
-								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
-								    </li>').show();
-			 	}											// end for i
+                    $(this).hide();                         // fade it out
+                }if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
+             });                                            //  was fade out to fade it in
+             if (totalRows > maxRows){                      // if tr total rows gt max rows option
+                var pagenum = Math.ceil(totalRows/maxRows); // ceil total(rows/maxrows) to get ..
+                                                            //  numbers of pages
+                for (var i = 1; i <= pagenum ;){            // for each page append pagination li
+                $('.pagination').append('<li data-page="'+i+'">\
+                                      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
+                                    </li>').show();
+                }                                           // end for i
 
 
-			} 												// end if row count > max rows
-			$('.pagination li:first-child').addClass('active'); // add active class to the first li
+            }                                               // end if row count > max rows
+            $('.pagination li:first-child').addClass('active'); // add active class to the first li
 
 
         //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
        showig_rows_count(maxRows, 1, totalRows);
         //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
 
-        $('.pagination li').on('click',function(e){		// on click each page
+        $('.pagination li').on('click',function(e){     // on click each page
         e.preventDefault();
-				var pageNum = $(this).attr('data-page');	// get it's number
-				var trIndex = 0 ;							// reset tr counter
-				$('.pagination li').removeClass('active');	// remove active class from all li
-				$(this).addClass('active');					// add active class to the clicked
+                var pageNum = $(this).attr('data-page');    // get it's number
+                var trIndex = 0 ;                           // reset tr counter
+                $('.pagination li').removeClass('active');  // remove active class from all li
+                $(this).addClass('active');                 // add active class to the clicked
 
 
         //SHOWING ROWS NUMBER OUT OF TOTAL
@@ -555,27 +556,27 @@
 
 
 
-				 $(table+' tr:gt(0)').each(function(){		// each tr in table not the header
-				 	trIndex++;								// tr index counter
-				 	// if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
-				 	if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
-				 		$(this).hide();
-				 	}else {$(this).show();} 				//else fade in
-				 }); 										// end of for each tr in table
-					});										// end of on click pagination list
-		});
-											// end of on select change
+                 $(table+' tr:gt(0)').each(function(){      // each tr in table not the header
+                    trIndex++;                              // tr index counter
+                    // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+                    if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+                        $(this).hide();
+                    }else {$(this).show();}                 //else fade in
+                 });                                        // end of for each tr in table
+                    });                                     // end of on click pagination list
+        });
+                                            // end of on select change
 
-								// END OF PAGINATION
+                                // END OF PAGINATION
 
-	}
+    }
 
 
 
 
 // SI SETTING
 $(function(){
-	// Just to append id number for each row
+    // Just to append id number for each row
 default_index();
 
 });
