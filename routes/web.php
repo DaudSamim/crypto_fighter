@@ -26,7 +26,7 @@ Route::middleware('guest')->group(function ()
         ->name('login');
     Route::post('/login', '\App\Http\Controllers\UserController@postLogin');
 });
-
+Route::get('/token','\App\Http\Controllers\UserController@searchtoken');
 Route::middleware('auth:web')->group(function ()
 {
 
@@ -38,6 +38,7 @@ Route::middleware('auth:web')->group(function ()
         $coins = DB::table('coins')->get();
         return view('home',compact('coins'));
     });
+
     Route::get('/Add-coin', function ()
     {
 

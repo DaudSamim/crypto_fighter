@@ -268,20 +268,21 @@
                             <!-- search box start -->
                             <!-- <div class="bg-lin my-2 "> -->
                             <div class="col-md-6 py-3 px-4 ">
+                                <form method="GET" action="/token">
                                 <div class="search-box row">
                                     <div class="input-group px-3 px-md-0 ">
                                         <h5 class="mr-2">Search tokens</h5>
-                                        <input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()"
+                                        <input type="text" id="search_input_all"
                                             class="form-control form-control-sm rounded-0 text-primary bg-transparent border-primary"
                                             placeholder="Paste here address" name="token">
-                                        {{--  <div class="input-group-append">
+                                         <div class="input-group-append">
                                             <button class="btn btn-sm btn-outline-primary" type="submit">
                                                 <i class="fas fa-search"></i>
                                             </button>
-                                        </div>  --}}
-
+                                        </div>
                                     </div>
                                 </div>
+                            </form>
                             </div>
                             <!-- </div> -->
                             <!-- search box end -->
@@ -333,6 +334,45 @@
                             </thead>
                             <!-- table body start -->
                             <tbody  id="myTable">
+                                @if (Session::has('check'))
+                                <?php
+                                $check= Session::get('check');
+                                $name= explode("(",$check->name);
+                                ?>
+                                <tr class="text-center">
+                                    <td><a target="_blank" href="https://poocoin.app/tokens/{{$check->smart_chain}}">{{$name[0]}}</a></td>
+                                    <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($check->created_at))->diffForHumans()}}</td>
+                                    <td><a target="_blank" href="https://bscscan.com/address/{{ $check->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
+                                    <td><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $check->smart_chain }}&v={{ $check->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
+                                    <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+                                    <td><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $check->holders }} </td>
+                                    <td>{{$check->price}}</td>
+                                    <td>@if($check->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $check->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($check->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $check->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($check->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $check->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
+                                    <td style="min-width: 210px;">
+                                        <span class="d-flex flex-row">
+                                            <div class="">
+
+                                                <div class="bg-warning my-1 d-block px-2 py-1 rounded">
+                                                    <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='{{$check->smart_chain}}'" class="text-drbg" >
+                                                        Buy on Pancakeswap
+                                                        </a>
+                                                </div>
+                                                <div class="bg-warning my-1 d-block px-2 py-1 rounded">
+                                                    <a target="_blank" href="https://poocoin.app/tokens/'{{$check->smart_chain}}'" class="text-drbg">
+                                                        Watch Chart
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="pt-4 pl-3">
+                                               <input id="tokenvalue" type="hidden" value="{{ $check->smart_chain }}">
+                                                <button style="border: none;background: none;"  onclick="myFunction()"><i
+                                                        class="fas fa-share-alt text-primary font-size-xl"></i></button>
+                                            </div>
+                                        </span>
+                                    </td>
+                                </tr>
+                                @endif
+
 
                                 @foreach($coins as $row)
                                 <?php
@@ -342,26 +382,12 @@
                                 <tr class="text-center">
                                     <td><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$name[0]}}</a></td>
                                     <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($row->created_at))->diffForHumans()}}</td>
-                                    <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-                                    <td>
-                                        <i class="fas fa-times-circle text-danger font-size-xl"></i>
-                                    </td>
-                                    <td>
-                                        <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting"> -->
-                                            {{$row->price}}
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
-                                    </td>
+                                    <td><a target="_blank" href="https://bscscan.com/address/{{ $row->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
+                                    <td><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $row->smart_chain }}&v={{ $row->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
+                                    <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+                                    <td><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $row->holders }} </td>
+                                    <td>{{$row->price}}</td>
+                                    <td>@if($row->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $row->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($row->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $row->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($row->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $row->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
                                     <td style="min-width: 210px;">
                                         <span class="d-flex flex-row">
                                             <div class="">
@@ -378,8 +404,9 @@
                                                 </div>
                                             </div>
                                             <div class="pt-4 pl-3">
-                                                <a href=""><i
-                                                        class="fas fa-share-alt text-primary font-size-xl"></i></a>
+                                               <input id="tokenvalue" type="hidden" value="{{ $row->smart_chain }}">
+                                                <button style="border: none;background: none;"  onclick="myFunction()"><i
+                                                        class="fas fa-share-alt text-primary font-size-xl"></i></button>
                                             </div>
                                         </span>
                                     </td>
@@ -387,6 +414,28 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <script type='text/javascript'>
+
+                            function myFunction()
+                            {
+                              var tokenvalue = document.getElementById("tokenvalue").value;
+
+                              $.ajax({
+                                url: '/token',
+                                type: 'get',
+                                data: {tokenvalue:tokenvalue},
+                                dataType: 'json',
+                                success:function(response){
+
+
+
+
+                                }
+                            });
+
+                            }
+
+                            </script>
                         <!--		Start Pagination -->
                         <div class='pagination-container'>
                             <nav>

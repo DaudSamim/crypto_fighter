@@ -15,8 +15,7 @@ use Symfony\Component\HttpClient\HttpClient;
 use Longman\TelegramBot\Entities\Update;
 use Telegram\Bot\Api;
 
-
-
+use function GuzzleHttp\Promise\each;
 
 class UserController extends Controller
 {
@@ -231,7 +230,7 @@ class UserController extends Controller
                 $data[1] = explode('Token', $data[1]);
                 $data[2] = explode('DEXTools:', $data[1][1]);
 
-            // dd($data[0],$data[1][0],$data[2][0]);
+             //dd($data[0],$data[1][0],$data[2][0]);
             $data[2][0] = str_replace(' contract:','',$data[2][0]);
             $data[1][0] = str_replace('Liquidity: ','',$data[1][0]);
             $data[0] = str_replace('🥞 New pair at Pancakeswap V2 🥞','',$data[0]);
@@ -244,10 +243,106 @@ class UserController extends Controller
             return $res;
         }
         else{
+            $token=$data[2][0];
+
+           $token= preg_replace("/\s+/", "", $token);
+
+            $client = new Client();
+            $client = new Client(HttpClient::create(['timeout' => 60]));
+            $crawler = $client->request('GET', 'https://bscscan.com/token/'.$token);
+
+            $key=null;
+            $text=  $crawler->filter('div[class="card-body"]')->text();
+            $dataw=explode(' ',$text);
+
+
+                $target = "Holders:";
+                if (in_array($target, $dataw)) {
+                    $key = array_search($target, $dataw);
+                }
+
+                $holders = $dataw[$key+1];
+                $site_url=null;
+            if($crawler->filter('div[id="ContentPlaceHolder1_tr_officialsite_1"]')->count() > 0)
+            {
+                $official=  $crawler->filter('div[id="ContentPlaceHolder1_tr_officialsite_1"]')->text();
+                $oficial_site=explode(' ',$official);
+
+
+                            if($oficial_site[2] !=null)
+                            {
+                                $site_url= $oficial_site[2];
+                                    }
+            }
+            else{
+                $site_url=null;
+            }
+
+         $crawler->filter('a[class="link-hover-secondary"]')->each(function ($node) {
+            $hrefs = $node->extract(array('href'));
+
+            });
+         $links = $crawler->filter('a[class="link-hover-secondary"]')->each(function($node) {
+            $href  = $node->attr('href');
+            $title = $node->attr('title');
+            $text  = $node->text();
+
+            return compact('href', 'title', 'text');
+             });
+    // dd($links);
+    $reddit=null;
+    $twitter=null;
+    $github=null;
+    $master=null;
+    $coinmarketcap=null;
+    $telegram=null;
+    $coingecko=null;
+    foreach($links as $link){
+
+       $string=$link['href'];
+        if(strpos($string, 'reddit') !== false){
+            $reddit=$link['href'];
+
+        }
+
+        if(strpos($string, 'twitter') !== false){
+            $twitter=$link['href'];
+        }
+
+        if(strpos($string, 'github') !== false){
+            $github=$link['href'];
+        }
+
+        if(strpos($string, 'master') !== false){
+            $master=$link['href'];
+        }
+        if(strpos($string, 'coinmarketcap') !== false){
+            $coinmarketcap=$link['href'];
+        }
+
+        if(strpos($string, 't.me') !== false){
+            $telegram=$link['href'];
+        }
+
+        if(strpos($string, 'coingecko') !== false){
+            $coingecko=$link['href'];
+        }
+
+    }
+
              DB::table('coins')->insert([
             'name' => $data[0],
             'smart_chain' => $data[2][0],
             'price' => $data[1][0],
+            'holders'=> $holders,
+            'offical_site'=>$site_url,
+            'reddit'=>$reddit,
+            'github'=>$github,
+            'twitter'=>$twitter,
+            'whitepaper'=>$master,
+            'market_cap'=>$coinmarketcap,
+            'telegram'=>$telegram,
+            'coingecko'=>$coingecko,
             ]);
 
             $id = DB::table('coins')->orderBy('id','desc')->pluck('id')->first();
@@ -259,26 +354,32 @@ class UserController extends Controller
             $res->msg = true;
             $name= explode("(",$data[0]);
 
-
-            $res->data = '<tr class="text-center"><td><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$name[0].'</a></td><td>'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->diffForHumans().'</td><td><i class="fas fa-check-circle text-success font-size-xl"></i></td><td><i class="fas fa-times-circle text-danger font-size-xl"></i></td><td><img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting">
-                                    </td>
-                                    <td>
-                                        <i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>
-                                        0
-                                    </td>
-                                    <td>
-                                        <!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;"
-                                            alt="Waitting"> -->'.$data[1][0].'
-
-                                    </td>
-                                    <td>
-                                        <a href=""><i class="fas fa-paper-plane font-size-xl text-success"></i></a>
-                                    </td>
-                                    <td>
-                                    <span class="d-flex flex-row">
-                                    <div class="">
-
+            if($telegram ==null){
+                $telegram_data = '<i class="fas fa-paper-plane font-size-xl"></i>';
+            }else{
+                $telegram_data='<a href="'. $telegram.'"><i class="fas fa-paper-plane font-size-xl text-success"></i></a> ';
+            }
+            if($twitter ==null){
+              $twitter_data=  '<i class="fab fa-twitter font-size-xl"></i>';
+            }
+                else{
+                    $twitter_data = '<a href="'.$twitter.'"><i class="fab fa-twitter text-success font-size-xl"></i></a>';
+                }
+                if($site_url ==null){
+                    $official_data= '<i class="fa fa-globe font-size-xl" ></i>';
+                }
+                    else{
+                        $official_data='<a href="'.$site_url.'"><i class="fa fa-globe text-success font-size-xl" ></i></a>';
+                    }
+                        $res->data = '<tr class="text-center"><td><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$name[0].'</a></td>
+            <td>'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->diffForHumans().'</td>
+            <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
+            <td><i class="fas fa-times-circle text-danger font-size-xl"></i></td>
+            <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+            <td><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>0</td>
+            <td><!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"> -->'.$data[1][0].'</td>
+            <td>'.$telegram_data.''.$twitter_data.''.$official_data.'</td>
+            <td><span class="d-flex flex-row"><div class="">
                                         <div class="bg-warning my-1 d-block px-2 py-1 rounded">
                                         <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='.$obj->smart_chain.'" class="text-drbg" >
                                         Buy on Pancakeswap
@@ -315,7 +416,7 @@ class UserController extends Controller
         public function webscrap()
         {
 
-            $token='0xba2ae424d960c26247dd6c32edc70b295c744c43';
+            $token='0xec3422ef92b2fb59e84c8b02ba73f1fe84ed8d71';
 
             $client = new Client();
             $client = new Client(HttpClient::create(['timeout' => 60]));
@@ -354,9 +455,66 @@ class UserController extends Controller
 
         return compact('href', 'title', 'text');
     });
-    dd($links);
+    // dd($links);
+    $reddit=null;
+    $twitter=null;
+    $github=null;
+    $master=null;
+    $coinmarketcap=null;
+    $telegram=null;
+    $coingecko=null;
+    foreach($links as $link){
+
+       $string=$link['href'];
+        if(strpos($string, 'reddit') !== false){
+            $reddit=$link['href'];
+
+        }
+
+        if(strpos($string, 'twitter') !== false){
+            $twitter=$link['href'];
+        }
+
+        if(strpos($string, 'github') !== false){
+            $github=$link['href'];
+        }
+
+        if(strpos($string, 'master') !== false){
+            $master=$link['href'];
+        }
+        if(strpos($string, 'coinmarketcap') !== false){
+            $coinmarketcap=$link['href'];
+        }
+
+        if(strpos($string, 't.me') !== false){
+            $telegram=$link['href'];
+        }
+
+        if(strpos($string, 'coingecko') !== false){
+            $coingecko=$link['href'];
+        }
+
+    }
+
+    DB::table('coins')->insert([
+    'holders'=> $holders,
+    'offical_site'=>$site_url,
+    'reddit'=>$reddit,
+    'github'=>$github,
+    'twitter'=>$twitter,
+    'whitepaper'=>$master,
+    'market_cap'=>$coinmarketcap,
+    'telegram'=>$telegram,
+    'coingecko'=>$coingecko,
+    ]);
 
 
+    }
+
+    public function searchtoken(){
+        $token=request()->query('tokenvalue');
+        $check=DB::table('coins')->where('smart_chain', 'like', '%' . $token . '%')->first();
+        return redirect()->back()->with('check',$check);
 
     }
 
