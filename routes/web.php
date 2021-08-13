@@ -17,7 +17,7 @@ Route::middleware('guest')->group(function ()
     // Route::get('/', '\App\Http\Controllers\UserController@getLogin');
     Route::get('/', function ()
     {
-        $coins = DB::table('coins')->orderBy('id','desc')->get();
+        $coins = DB::table('coins')->orderBy('id','desc')->limit(10)->get();
         return view('index',compact('coins'));
     });
     Route::get('/web', '\App\Http\Controllers\UserController@webscrap')

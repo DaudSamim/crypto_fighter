@@ -65,36 +65,36 @@
                                 <div class="filter-select ">
                                     <div class="d-flex justify-content-center flex-column ">
                                         <!-- view mode -->
-                                        <div class="view p-1">
-                                            <div class="row">
-                                                <span class="col">
-                                                    <label for="view-mod">View Mode:</label>
-                                                </span>
-                                                <span class="col">
-                                                    <select name="MODE"
-                                                        class="form-control  rounded-0 bg-transparent text-primary border-primary"
-                                                        id="view-mod">
-                                                        <option value="BASIC" class="text-black">BASIC</option>
-                                                        <option value="ADVANCED" class="text-black">EXPERT</option>
-                                                    </select></span>
-                                            </div>
-                                        </div>
+                                        <!--<div class="view p-1">-->
+                                        <!--    <div class="row">-->
+                                        <!--        <span class="col">-->
+                                        <!--            <label for="view-mod">View Mode:</label>-->
+                                        <!--        </span>-->
+                                        <!--        <span class="col">-->
+                                        <!--            <select name="MODE"-->
+                                        <!--                class="form-control  rounded-0 bg-transparent text-primary border-primary"-->
+                                        <!--                id="view-mod">-->
+                                        <!--                <option value="BASIC" class="text-black">BASIC</option>-->
+                                        <!--                <option value="ADVANCED" class="text-black">EXPERT</option>-->
+                                        <!--            </select></span>-->
+                                        <!--    </div>-->
+                                        <!--</div>-->
                                         <!-- Network -->
-                                        <div class="Network p-1">
-                                            <div class="row">
-                                                <span class="col">
-                                                    <label for="Network">Network:</label>
-                                                </span>
-                                                <span class="col">
-                                                    <select name="MODE"
-                                                        class="form-control rounded-0 bg-transparent text-primary border-primary "
-                                                        id="Network">
-                                                        <option value="BSC" class="text-black">BSC</option>
-                                                        <option value="MATIC" class="text-black">MATIC</option>
-                                                        <option value="TODAS" class="text-black">TODAS</option>
-                                                    </select></span>
-                                            </div>
-                                        </div>
+                                        <!--<div class="Network p-1">-->
+                                        <!--    <div class="row">-->
+                                        <!--        <span class="col">-->
+                                        <!--            <label for="Network">Network:</label>-->
+                                        <!--        </span>-->
+                                        <!--        <span class="col">-->
+                                        <!--            <select name="MODE"-->
+                                        <!--                class="form-control rounded-0 bg-transparent text-primary border-primary "-->
+                                        <!--                id="Network">-->
+                                        <!--                <option value="BSC" class="text-black">BSC</option>-->
+                                        <!--                <option value="MATIC" class="text-black">MATIC</option>-->
+                                        <!--                <option value="TODAS" class="text-black">TODAS</option>-->
+                                        <!--            </select></span>-->
+                                        <!--    </div>-->
+                                        <!--</div>-->
                                         <!-- time -->
                                         <div class="time p-1">
                                             <div class="row">
@@ -105,7 +105,7 @@
                                                     <select name="MODE"
                                                         class="form-control rounded-0 bg-transparent text-primary border-primary"
                                                         id="Check-Time">
-                                                        <option value="1" class="text-black">1 HOURS</option>
+                                                        <option value="1" class="text-black">1 HOUR</option>
                                                         <option value="2" class="text-black">2 HOURS</option>
                                                         <option value="3" class="text-black">3 HOURS</option>
                                                         <option value="4" class="text-black">4 HOURS</option>
@@ -121,25 +121,25 @@
                                             </div>
                                         </div>
                                         <!-- Liquidity -->
-                                        <div class="Liquidity p-1">
-                                            <div class="row">
-                                                <span class="col">
-                                                    <label for="Liquidity">Liquidity:</label>
-                                                </span>
-                                                <span class="col">
-                                                    <select name="MODE"
-                                                        class="form-control rounded-0 bg-transparent text-primary border-primary"
-                                                        id="Liquidity">
-                                                        <option value="safe" class="text-black">SAFE</option>
-                                                        <option value="p-safe" class="text-black">Probably Safe</option>
-                                                        <option value="waitting-p" class="text-black">Waitting Liquidity
-                                                        </option>
-                                                        <option value="not-check" class="text-black">Not Checked
-                                                        </option>
-                                                        <option value="All" class="text-black">All</option>
-                                                    </select></span>
-                                            </div>
-                                        </div>
+                                        <!--<div class="Liquidity p-1">-->
+                                        <!--    <div class="row">-->
+                                        <!--        <span class="col">-->
+                                        <!--            <label for="Liquidity">Liquidity:</label>-->
+                                        <!--        </span>-->
+                                        <!--        <span class="col">-->
+                                        <!--            <select name="MODE"-->
+                                        <!--                class="form-control rounded-0 bg-transparent text-primary border-primary"-->
+                                        <!--                id="Liquidity">-->
+                                        <!--                <option value="safe" class="text-black">SAFE</option>-->
+                                        <!--                <option value="p-safe" class="text-black">Probably Safe</option>-->
+                                        <!--                <option value="waitting-p" class="text-black">Waitting Liquidity-->
+                                        <!--                </option>-->
+                                        <!--                <option value="not-check" class="text-black">Not Checked-->
+                                        <!--                </option>-->
+                                        <!--                <option value="All" class="text-black">All</option>-->
+                                        <!--            </select></span>-->
+                                        <!--    </div>-->
+                                        <!--</div>-->
                                         <!-- max holder -->
                                         <div class="max-hold p-1">
                                             <div class="row">
@@ -153,7 +153,7 @@
                                                         <!-- <option value="1" class="text-black">10 %</option> -->
                                                         <script>
                                                             for (let x = 0; x <= 100; x++) {
-                                                                document.write('<option value="' + x + '" class="text-black">' + x + ' %</option>');
+                                                                document.write('<option value="' + x + '" class="text-black">' + x + ' </option>');
                                                             }
                                                         </script>
                                                     </select></span>
@@ -161,16 +161,16 @@
                                         </div>
                                     </div>
                                     <div class="select">
-                                        <div class="select-child-div">
-                                            <input type="checkbox" name="Renounced" id=""> <span class=""><i
-                                                    class="fas fa-user-alt mr-1 text-white mr-1 ml-2"></i>
-                                                Renounced</span>
-                                        </div>
-                                        <div class="select-child-div">
-                                            <input type="checkbox" name="Renounced" id=""> <span class=""><i
-                                                    class="fas fa-money-bill-alt text-white mr-1 ml-2"></i>
-                                                Sellers</span>
-                                        </div>
+                                        <!--<div class="select-child-div">-->
+                                        <!--    <input type="checkbox" name="Renounced" id=""> <span class=""><i-->
+                                        <!--            class="fas fa-user-alt mr-1 text-white mr-1 ml-2"></i>-->
+                                        <!--        Renounced</span>-->
+                                        <!--</div>-->
+                                        <!--<div class="select-child-div">-->
+                                        <!--    <input type="checkbox" name="Renounced" id=""> <span class=""><i-->
+                                        <!--            class="fas fa-money-bill-alt text-white mr-1 ml-2"></i>-->
+                                        <!--        Sellers</span>-->
+                                        <!--</div>-->
                                         <div class="select-child-div">
                                             <input type="checkbox" name="Renounced" id=""> <span class=""><i
                                                     class="fas fa-file-contract text-white mr-1 ml-2"></i> Code</span>
@@ -268,7 +268,7 @@
                             </div>
                             <!-- search box start -->
                             <!-- <div class="bg-lin my-2 "> -->
-                            <div class="col-md-6 py-3 px-4 ">
+                            <div class="col-md-6 py-3 px-4 pt-lg-4">
                                 <form method="GET" action="/token">
                                 <div class="search-box row">
                                     <div class="input-group px-3 px-md-0 ">
@@ -296,15 +296,15 @@
                     <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
                     <!-- filter place empty now  -->
 
-                    <select class="form-control" style="width: 7%;margin-bottom: 1%;" id="maxRows">
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="70">70</option>
-                        <option value="100">100</option>
-                        <option value="5000">ALL</option>
-                       </select>
+                    <!--<select class="form-control" style="width: 7%;margin-bottom: 1%;" id="maxRows">-->
+                    <!--    <option value="10">10</option>-->
+                    <!--    <option value="15">15</option>-->
+                    <!--    <option value="20">20</option>-->
+                    <!--    <option value="50">50</option>-->
+                    <!--    <option value="70">70</option>-->
+                    <!--    <option value="100">100</option>-->
+                    <!--    <option value="5000">ALL</option>-->
+                    <!--   </select>-->
 
                     <!-- table start -->
                     <div class="table-responsive ">
@@ -312,25 +312,25 @@
                             <!-- table head start -->
                             <thead class="font-weight-lighter">
                                 <tr>
-                                    <th>Token</th>
-                                    <th style="min-width: 90px;">Age
+                                    <th class="text-center">Token</th>
+                                    <th class="text-center" style="min-width: 90px;">Age
                                         <span class="float-right">
                                             <i class="fas fa-long-arrow-alt-up text-secondary m-0"></i>
                                             <i class="fas fa-long-arrow-alt-down text-secondary m-0"></i>
                                         </span>
                                     </th>
-                                    <th>Code</th>
-                                    <th>Owner</th>
-                                    <th>Seller</th>
-                                    <th style="min-width: 100px">Holders
+                                    <th class="text-center">Code</th>
+                                    <th class="text-center">Owner</th>
+                                    <th class="text-center">Seller</th>
+                                    <th class="text-center" style="min-width: 100px">Holders
                                         <span class="float-right">
                                             <i class="fas fa-long-arrow-alt-up text-secondary m-0"></i>
                                             <i class="fas fa-long-arrow-alt-down text-secondary m-0"></i>
                                         </span>
                                     </th>
-                                    <th>Liquidity</th>
-                                    <th>Channels</th>
-                                    <th>Links</th>
+                                    <th class="text-center">Liquidity</th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center">Links</th>
                                 </tr>
                             </thead>
                             <!-- table body start -->
@@ -341,20 +341,20 @@
                                 $name= explode("(",$check->name);
                                 ?>
                                 <tr style="background-color: red" class="text-center">
-                                    <td><a target="_blank" href="https://poocoin.app/tokens/{{$check->smart_chain}}">{{$name[0]}}</a></td>
-                                    <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($check->created_at))->addHour(7)->diffForHumans()}}</td>
-                                    <td><a target="_blank" href="https://bscscan.com/address/{{ $check->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
-                                    <td><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $check->smart_chain }}&v={{ $check->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
-                                    <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
-                                    <td><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $check->holders }} </td>
-                                    <td>{{$check->price}}</td>
-                                    <td>@if($check->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $check->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($check->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $check->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($check->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $check->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
-                                    <td style="min-width: 210px;">
+                                    <td class="align-middle"><a target="_blank" href="https://poocoin.app/tokens/{{$check->smart_chain}}">{{$name[0]}}</a></td>
+                                    <td class="align-middle">{{\Carbon\Carbon::createFromTimeStamp(strtotime($check->created_at))->addHour(7)->diffForHumans()}}</td>
+                                    <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/{{ $check->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
+                                    <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $check->smart_chain }}&v={{ $check->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
+                                    <td class="align-middle"><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+                                    <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $check->holders }} </td>
+                                    <td class="align-middle">{{$check->price}}</td>
+                                    <td class="align-middle">@if($check->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $check->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($check->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $check->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($check->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $check->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
+                                    <td class="align-middle" style="min-width: 210px;">
                                         <span class="d-flex flex-row">
                                             <div class="">
 
                                                 <div class="bg-warning my-1 d-block px-2 py-1 rounded">
-                                                    <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='{{$check->smart_chain}}'" class="text-drbg" >
+                                                    <a target="_blank" href="https://pancakeswap.finance/swap?outputCurrency='{{$check->smart_chain}}'" class="text-drbg" >
                                                         Buy on Pancakeswap
                                                         </a>
                                                 </div>
@@ -365,9 +365,11 @@
                                                 </div>
                                             </div>
                                             <div class="pt-4 pl-3">
-                                               <input id="tokenvalue" type="hidden" value="{{ $check->smart_chain }}">
-                                                <button style="border: none;background: none;"  onclick="myFunction()"><i
+                                                <form method="GET" action="/token">
+                                                    <input  name="token" type="hidden" value="{{ $check->smart_chain }}">
+                                                <button type="submit" style="border: none;background: none;" ><i
                                                         class="fas fa-share-alt text-primary font-size-xl"></i></button>
+                                                </form>        
                                             </div>
                                         </span>
                                     </td>
@@ -381,33 +383,35 @@
 
                                 ?>
                                 <tr class="text-center">
-                                    <td><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$name[0]}}</a></td>
-                                    <td>{{\Carbon\Carbon::createFromTimeStamp(strtotime($row->created_at))->addHour(7)->diffForHumans()}}</td>
-                                    <td><a target="_blank" href="https://bscscan.com/address/{{ $row->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
-                                    <td><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $row->smart_chain }}&v={{ $row->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
-                                    <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
-                                    <td><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $row->holders }} </td>
-                                    <td>{{$row->price}}</td>
-                                    <td>@if($row->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $row->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($row->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $row->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($row->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $row->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
-                                    <td style="min-width: 210px;">
+                                    <td class="align-middle" ><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$name[0]}}</a></td>
+                                    <td class="align-middle" >{{\Carbon\Carbon::createFromTimeStamp(strtotime($row->created_at))->addHour(7)->diffForHumans()}}</td>
+                                    <td class="align-middle" ><a target="_blank" href="https://bscscan.com/address/{{ $row->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
+                                    <td class="align-middle" ><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $row->smart_chain }}&v={{ $row->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
+                                    <td class="align-middle" ><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+                                    <td class="align-middle" ><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $row->holders }} </td>
+                                    <td class="align-middle" >{{$row->price}}</td>
+                                    <td class="align-middle" >@if($row->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $row->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($row->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $row->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($row->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $row->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
+                                    <td class="align-middle"  style="min-width: 210px;">
                                         <span class="d-flex flex-row">
                                             <div class="">
 
                                                 <div class="bg-warning my-1 d-block px-2 py-1 rounded">
-                                                    <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='{{$row->smart_chain}}'" class="text-drbg" >
+                                                    <a target="_blank" href="https://pancakeswap.finance/swap?outputCurrency={{$row->smart_chain}}" class="text-drbg" >
                                                         Buy on Pancakeswap
                                                         </a>
                                                 </div>
                                                 <div class="bg-warning my-1 d-block px-2 py-1 rounded">
-                                                    <a target="_blank" href="https://poocoin.app/tokens/'{{$row->smart_chain}}'" class="text-drbg">
+                                                    <a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}" class="text-drbg">
                                                         Watch Chart
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="pt-4 pl-3">
-                                               <input id="tokenvalue" type="hidden" value="{{ $row->smart_chain }}">
-                                                <button style="border: none;background: none;"  onclick="myFunction()"><i
+                                              <form method="GET" action="/token">
+                                                    <input  name="token" type="hidden" value="{{ $row->smart_chain }}">
+                                                <button type="submit" style="border: none;background: none;" ><i
                                                         class="fas fa-share-alt text-primary font-size-xl"></i></button>
+                                                </form>   
                                             </div>
                                         </span>
                                     </td>
@@ -437,7 +441,7 @@
                             }
 
                             </script>
-                        <!--        Start Pagination -->
+                        <!--		Start Pagination -->
                         <div class='pagination-container'>
                             <nav>
                               <ul class="pagination">
@@ -506,48 +510,48 @@
     </script>
  <script>
     getPagination('#table-id');
-    $('#maxRows').trigger('change');
-    function getPagination (table){
+	$('#maxRows').trigger('change');
+	function getPagination (table){
 
 
     $('#paginate').DataTable({
-          $('#maxRows').on('change',function(){
-            $('.pagination').html('');                      // reset pagination div
-            var trnum = 0 ;                                 // reset tr counter
-            var maxRows = parseInt($(this).val());          // get Max Rows from select option
+		  $('#maxRows').on('change',function(){
+		  	$('.pagination').html('');						// reset pagination div
+		  	var trnum = 0 ;									// reset tr counter
+		  	var maxRows = parseInt($(this).val());			// get Max Rows from select option
 
-            var totalRows = $(table+' tbody tr').length;        // numbers of rows
-             $(table+' tr:gt(0)').each(function(){          // each TR in  table and not the header
-                trnum++;                                    // Start Counter
-                if (trnum > maxRows ){                      // if tr number gt maxRows
+		  	var totalRows = $(table+' tbody tr').length;		// numbers of rows
+			 $(table+' tr:gt(0)').each(function(){			// each TR in  table and not the header
+			 	trnum++;									// Start Counter
+			 	if (trnum > maxRows ){						// if tr number gt maxRows
 
-                    $(this).hide();                         // fade it out
-                }if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
-             });                                            //  was fade out to fade it in
-             if (totalRows > maxRows){                      // if tr total rows gt max rows option
-                var pagenum = Math.ceil(totalRows/maxRows); // ceil total(rows/maxrows) to get ..
-                                                            //  numbers of pages
-                for (var i = 1; i <= pagenum ;){            // for each page append pagination li
-                $('.pagination').append('<li data-page="'+i+'">\
-                                      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
-                                    </li>').show();
-                }                                           // end for i
+			 		$(this).hide();							// fade it out
+			 	}if (trnum <= maxRows ){$(this).show();}// else fade in Important in case if it ..
+			 });											//  was fade out to fade it in
+			 if (totalRows > maxRows){						// if tr total rows gt max rows option
+			 	var pagenum = Math.ceil(totalRows/maxRows);	// ceil total(rows/maxrows) to get ..
+			 												//	numbers of pages
+			 	for (var i = 1; i <= pagenum ;){			// for each page append pagination li
+			 	$('.pagination').append('<li data-page="'+i+'">\
+								      <span>'+ i++ +'<span class="sr-only">(current)</span></span>\
+								    </li>').show();
+			 	}											// end for i
 
 
-            }                                               // end if row count > max rows
-            $('.pagination li:first-child').addClass('active'); // add active class to the first li
+			} 												// end if row count > max rows
+			$('.pagination li:first-child').addClass('active'); // add active class to the first li
 
 
         //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
        showig_rows_count(maxRows, 1, totalRows);
         //SHOWING ROWS NUMBER OUT OF TOTAL DEFAULT
 
-        $('.pagination li').on('click',function(e){     // on click each page
+        $('.pagination li').on('click',function(e){		// on click each page
         e.preventDefault();
-                var pageNum = $(this).attr('data-page');    // get it's number
-                var trIndex = 0 ;                           // reset tr counter
-                $('.pagination li').removeClass('active');  // remove active class from all li
-                $(this).addClass('active');                 // add active class to the clicked
+				var pageNum = $(this).attr('data-page');	// get it's number
+				var trIndex = 0 ;							// reset tr counter
+				$('.pagination li').removeClass('active');	// remove active class from all li
+				$(this).addClass('active');					// add active class to the clicked
 
 
         //SHOWING ROWS NUMBER OUT OF TOTAL
@@ -556,27 +560,27 @@
 
 
 
-                 $(table+' tr:gt(0)').each(function(){      // each tr in table not the header
-                    trIndex++;                              // tr index counter
-                    // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
-                    if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
-                        $(this).hide();
-                    }else {$(this).show();}                 //else fade in
-                 });                                        // end of for each tr in table
-                    });                                     // end of on click pagination list
-        });
-                                            // end of on select change
+				 $(table+' tr:gt(0)').each(function(){		// each tr in table not the header
+				 	trIndex++;								// tr index counter
+				 	// if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+				 	if (trIndex > (maxRows*pageNum) || trIndex <= ((maxRows*pageNum)-maxRows)){
+				 		$(this).hide();
+				 	}else {$(this).show();} 				//else fade in
+				 }); 										// end of for each tr in table
+					});										// end of on click pagination list
+		});
+											// end of on select change
 
-                                // END OF PAGINATION
+								// END OF PAGINATION
 
-    }
+	}
 
 
 
 
 // SI SETTING
 $(function(){
-    // Just to append id number for each row
+	// Just to append id number for each row
 default_index();
 
 });

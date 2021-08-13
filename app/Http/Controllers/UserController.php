@@ -371,17 +371,17 @@ class UserController extends Controller
                     else{
                         $official_data='<a href="'.$site_url.'"><i class="fa fa-globe text-success font-size-xl" ></i></a>';
                     }
-                        $res->data = '<tr class="text-center"><td><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$name[0].'</a></td>
-            <td>'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->diffForHumans().'</td>
-            <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-            <td><i class="fas fa-times-circle text-danger font-size-xl"></i></td>
-            <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
-            <td><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>0</td>
-            <td><!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"> -->'.$data[1][0].'</td>
-            <td>'.$telegram_data.''.$twitter_data.''.$official_data.'</td>
-            <td><span class="d-flex flex-row"><div class="">
+                        $res->data = '<tr class="text-center"><td class="align-middle"><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$name[0].'</a></td>
+            <td class="align-middle">'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->addHour(7)->diffForHumans().'</td>
+            <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/'.$obj->smart_chain.'#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
+            <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a='.$obj->smart_chain .'&v='. $obj->smart_chain.'&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
+            <td class="align-middle"><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+            <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>0</td>
+            <td class="align-middle"><!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"> -->'.$data[1][0].'</td>
+            <td class="align-middle">'.$telegram_data.''.$twitter_data.''.$official_data.'</td>
+            <td class="align-middle"><span class="d-flex flex-row"><div class="">
                                         <div class="bg-warning my-1 d-block px-2 py-1 rounded">
-                                        <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='.$obj->smart_chain.'" class="text-drbg" >
+                                        <a target="_blank" href="https://pancakeswap.finance/swap?outputCurrency='.$obj->smart_chain.'" class="text-drbg" >
                                         Buy on Pancakeswap
                                         </a>
                                 </div>
@@ -392,8 +392,11 @@ class UserController extends Controller
                                 </div>
                             </div>
                             <div class="pt-4 pl-3">
-                                <a href=""><i
-                                        class="fas fa-share-alt text-primary font-size-xl"></i></a>
+                                <form method="GET" action="/token">
+                                                    <input  name="token" type="hidden" value="'.$obj->smart_chain.'">
+                                                <button type="submit" style="border: none;background: none;" ><i
+                                                        class="fas fa-share-alt text-primary font-size-xl"></i></button>
+                                                </form>  
                             </div>
                         </span>
                                     </td>
@@ -512,8 +515,9 @@ class UserController extends Controller
     }
 
     public function searchtoken(){
-        $token=request()->query('tokenvalue');
-        $check=DB::table('coins')->where('smart_chain', 'like', '%' . $token . '%')->first();
+        $token=request()->query('token');
+        // dd($token);
+        $check=DB::table('coins')->where('name', 'like', '%' . $token . '%')->orWhere('smart_chain', 'like', '%' . $token . '%')->first();
         return redirect()->back()->with('check',$check);
 
     }
