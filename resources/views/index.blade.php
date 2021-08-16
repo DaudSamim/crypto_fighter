@@ -66,7 +66,6 @@
                             <form action="/filter-record" method="get" enctype="multipart/form-data">
                                 <div class="filter-select ">
                                     <div class="d-flex justify-content-center flex-column ">
-
                                         <div class="time p-1">
                                             <div class="row">
                                                 <span class="col">
@@ -76,6 +75,7 @@
                                                     <select name="time"
                                                         class="form-control rounded-0 bg-transparent text-primary border-primary"
                                                         id="Check-Time">
+                                                        <option value="" class="text-black">Select</option>
                                                         <option value="1" class="text-black">1 HOUR</option>
                                                         <option value="2" class="text-black">2 HOURS</option>
                                                         <option value="3" class="text-black">3 HOURS</option>
@@ -101,6 +101,7 @@
                                                     <select name="liquidity"
                                                         class="form-control rounded-0 bg-transparent text-primary border-primary"
                                                         id="Liquidity">
+                                                        <option value="" class="text-black">Select</option>
                                                         <option value="0-1000" class="text-black">0-1000</option>
                                                         <option value="1000-5000" class="text-black">1000-5000</option>
                                                         <option value="5000-10000" class="text-black">5000-10000</option>
@@ -117,7 +118,8 @@
                                                 </span>
                                                 <span class="col">
                                                     <select name="holders" class="form-control rounded-0 bg-transparent text-primary border-primary " id="Max-Holder">
-                                                   <option value="1-10" class="text-black">1-10</option>
+                                                    <option value="" class="text-black">Select</option>
+                                                    <option value="1-10" class="text-black">1-10</option>
                                                    <option value="11-20" class="text-black">11-20</option>
                                                    <option value="21-30" class="text-black">21-30</option>
                                                    <option value="31-40" class="text-black">31-40</option>
@@ -267,7 +269,6 @@
                     <!-- add banner  -->
                     <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
                     <!-- filter place empty now  -->
-
 
 
                     <!-- table start -->

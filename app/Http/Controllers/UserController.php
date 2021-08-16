@@ -420,20 +420,6 @@ class UserController extends Controller
     }
 
 
-        public function webscrap()
-        {
-
-
-        }
-
-    public function searchtoken(){
-        $token=request()->query('token');
-        // dd($token);
-        $check=DB::table('coins')->where('name', 'like', '%' . $token . '%')->orWhere('smart_chain', 'like', '%' . $token . '%')->first();
-
-        return redirect()->back()->with('check',$check);
-
-    }
     public function filterRecord()
     {
         $hours=request()->query('time');
@@ -451,14 +437,14 @@ class UserController extends Controller
         if (request()->has('time')) {
             $query = $query->whereDate('created_at', '<=', $newDateTime);
         }
-        if (request()->has('liquidity')) {
+        if (request()->has('liquidity') && $liquidity != null) {
             $price=explode('-',$liquidity);
 
             $min_liquid=$price[0];
             $max_liquid=$price[1];
             $query = $query->whereBetween('price', [$min_liquid, $max_liquid]);
         }
-        if (request()->has('holders')) {
+        if (request()->has('holders') && $holders != null) {
             $hol=explode('-',$holders);
 
             $min_holders=$hol[0];
@@ -489,7 +475,12 @@ class UserController extends Controller
 
     return redirect()->back()->with('filtereddata',$filtered);
 
-
+    }
+    public function searchtoken(){
+        $token=request()->query('token');
+        // dd($token);
+        $check=DB::table('coins')->where('name', 'like', '%' . $token . '%')->orWhere('smart_chain', 'like', '%' . $token . '%')->first();
+        return redirect()->back()->with('check',$check);
 
     }
 
