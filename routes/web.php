@@ -14,11 +14,21 @@ Route::get('testings','\App\Http\Controllers\UserController@testings');
 
 Route::middleware('guest')->group(function ()
 {
-    // Route::get('/', '\App\Http\Controllers\UserController@getLogin');
     Route::get('/', function ()
     {
+
+        $count = DB::table('coins')->count();
+        $skip = 200;
+        $limit = $count - $skip;
+        $d=DB::table('coins')->orderBy('id', 'ASC')->skip($skip)->take($limit)->delete();
+
         $coins = DB::table('coins')->orderBy('id','desc')->get();
-        return view('index',compact('coins'));
+        $page_count = DB::table('coins')->orderBy('id','desc')->count() / 10 ;
+
+        if($page_count > 10){
+            $page_count = 20;
+        }
+        return view('index',compact('coins','page_count'));
     });
     Route::get('/web', '\App\Http\Controllers\UserController@webscrap')
     ->name('web');
@@ -27,6 +37,7 @@ Route::middleware('guest')->group(function ()
     Route::post('/login', '\App\Http\Controllers\UserController@postLogin');
 });
 Route::get('/token','\App\Http\Controllers\UserController@searchtoken');
+Route::get('/filter-record','\App\Http\Controllers\UserController@filterRecord');
 Route::middleware('auth:web')->group(function ()
 {
 

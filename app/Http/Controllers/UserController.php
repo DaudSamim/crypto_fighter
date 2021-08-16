@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 // use Codenixsv\CoinGeckoApi\CoinGeckoClient;
 use Curl\Curl;
+use Illuminate\Support\Carbon;
 use Goutte\Client;
+use App\Models\Coin;
 use Symfony\Component\HttpClient\HttpClient;
 // use Goutte\Client;
 // use Symfony\Component\Panther\Client;
@@ -219,7 +221,7 @@ class UserController extends Controller
 
                 // Handle telegram getUpdates request
                 $data = $telegram->handleGetUpdates();
-                // dd($data);
+                // dd($data->result[0]->channel_post['text']);
         if(!empty($data->result)){
 
                 DB::table('coins')->insert([
@@ -329,11 +331,13 @@ class UserController extends Controller
         }
 
     }
+    $pr=explode("$",$data[1][0]);
+    $pric = str_replace(',','',$pr[1]);
 
              DB::table('coins')->insert([
             'name' => $data[0],
             'smart_chain' => $data[2][0],
-            'price' => $data[1][0],
+            'price' =>$pric,
             'holders'=> $holders,
             'offical_site'=>$site_url,
             'reddit'=>$reddit,
@@ -371,17 +375,17 @@ class UserController extends Controller
                     else{
                         $official_data='<a href="'.$site_url.'"><i class="fa fa-globe text-success font-size-xl" ></i></a>';
                     }
-                        $res->data = '<tr class="text-center"><td><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$name[0].'</a></td>
-            <td>'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->diffForHumans().'</td>
-            <td><i class="fas fa-check-circle text-success font-size-xl"></i></td>
-            <td><i class="fas fa-times-circle text-danger font-size-xl"></i></td>
-            <td><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
-            <td><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>0</td>
-            <td><!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"> -->'.$data[1][0].'</td>
-            <td>'.$telegram_data.''.$twitter_data.''.$official_data.'</td>
-            <td><span class="d-flex flex-row"><div class="">
+                        $res->data = '<tr class="text-center"><td class="align-middle"><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$name[0].'</a></td>
+            <td class="align-middle">'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->addHour(7)->diffForHumans().'</td>
+            <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/'.$obj->smart_chain.'#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
+            <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a='.$obj->smart_chain .'&v='. $obj->smart_chain.'&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
+            <td class="align-middle"><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+            <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>0</td>
+            <td class="align-middle"><!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"> -->'.$pric.'</td>
+            <td class="align-middle">'.$telegram_data.''.$twitter_data.''.$official_data.'</td>
+            <td class="align-middle"><span class="d-flex flex-row"><div class="">
                                         <div class="bg-warning my-1 d-block px-2 py-1 rounded">
-                                        <a target="_blank" href="https://exchange.pancakeswap.finance/#/swap?outputCurrency='.$obj->smart_chain.'" class="text-drbg" >
+                                        <a target="_blank" href="https://pancakeswap.finance/swap?outputCurrency='.$obj->smart_chain.'" class="text-drbg" >
                                         Buy on Pancakeswap
                                         </a>
                                 </div>
@@ -392,8 +396,11 @@ class UserController extends Controller
                                 </div>
                             </div>
                             <div class="pt-4 pl-3">
-                                <a href=""><i
-                                        class="fas fa-share-alt text-primary font-size-xl"></i></a>
+                                <form method="GET" action="/token">
+                                                    <input  name="token" type="hidden" value="'.$obj->smart_chain.'">
+                                                <button type="submit" style="border: none;background: none;" ><i
+                                                        class="fas fa-share-alt text-primary font-size-xl"></i></button>
+                                                </form>
                             </div>
                         </span>
                                     </td>
@@ -416,105 +423,73 @@ class UserController extends Controller
         public function webscrap()
         {
 
-            $token='0xec3422ef92b2fb59e84c8b02ba73f1fe84ed8d71';
-
-            $client = new Client();
-            $client = new Client(HttpClient::create(['timeout' => 60]));
-            $crawler = $client->request('GET', 'https://bscscan.com/token/'.$token);
-
-            $key=null;
-            $text=  $crawler->filter('div[class="card-body"]')->text();
-            $data=explode(' ',$text);
-
-
-                $target = "Holders:";
-                if (in_array($target, $data)) {
-                    $key = array_search($target, $data);
-                }
-
-                $holders = $data[$key+1];
-
-                $official=  $crawler->filter('div[id="ContentPlaceHolder1_tr_officialsite_1"]')->text();
-                $oficial_site=explode(' ',$official);
-
-
-               if($oficial_site[2] !=null)
-               {
-                $site_url= $oficial_site[2];
-                     }
-
-
-         $crawler->filter('a[class="link-hover-secondary"]')->each(function ($node) {
-        $hrefs = $node->extract(array('href'));
-
-            });
-         $links = $crawler->filter('a[class="link-hover-secondary"]')->each(function($node) {
-        $href  = $node->attr('href');
-        $title = $node->attr('title');
-        $text  = $node->text();
-
-        return compact('href', 'title', 'text');
-    });
-    // dd($links);
-    $reddit=null;
-    $twitter=null;
-    $github=null;
-    $master=null;
-    $coinmarketcap=null;
-    $telegram=null;
-    $coingecko=null;
-    foreach($links as $link){
-
-       $string=$link['href'];
-        if(strpos($string, 'reddit') !== false){
-            $reddit=$link['href'];
 
         }
-
-        if(strpos($string, 'twitter') !== false){
-            $twitter=$link['href'];
-        }
-
-        if(strpos($string, 'github') !== false){
-            $github=$link['href'];
-        }
-
-        if(strpos($string, 'master') !== false){
-            $master=$link['href'];
-        }
-        if(strpos($string, 'coinmarketcap') !== false){
-            $coinmarketcap=$link['href'];
-        }
-
-        if(strpos($string, 't.me') !== false){
-            $telegram=$link['href'];
-        }
-
-        if(strpos($string, 'coingecko') !== false){
-            $coingecko=$link['href'];
-        }
-
-    }
-
-    DB::table('coins')->insert([
-    'holders'=> $holders,
-    'offical_site'=>$site_url,
-    'reddit'=>$reddit,
-    'github'=>$github,
-    'twitter'=>$twitter,
-    'whitepaper'=>$master,
-    'market_cap'=>$coinmarketcap,
-    'telegram'=>$telegram,
-    'coingecko'=>$coingecko,
-    ]);
-
-
-    }
 
     public function searchtoken(){
-        $token=request()->query('tokenvalue');
-        $check=DB::table('coins')->where('smart_chain', 'like', '%' . $token . '%')->first();
+        $token=request()->query('token');
+        // dd($token);
+        $check=DB::table('coins')->where('name', 'like', '%' . $token . '%')->orWhere('smart_chain', 'like', '%' . $token . '%')->first();
+
         return redirect()->back()->with('check',$check);
+
+    }
+    public function filterRecord()
+    {
+        $hours=request()->query('time');
+        $newDateTime = Carbon::now()->subHours($hours);
+        $liquidity=request()->query('liquidity');
+        $holders=request()->query('holders');
+        $owner=request()->query('owner');
+        $sellers=request()->query('sellers');
+        $code=request()->query('code');
+        $twitter=request()->query('twitter');
+        $web=request()->query('web');
+        $telegram=request()->query('telegram');
+
+        $query = Coin::query();
+        if (request()->has('time')) {
+            $query = $query->whereDate('created_at', '<=', $newDateTime);
+        }
+        if (request()->has('liquidity')) {
+            $price=explode('-',$liquidity);
+
+            $min_liquid=$price[0];
+            $max_liquid=$price[1];
+            $query = $query->whereBetween('price', [$min_liquid, $max_liquid]);
+        }
+        if (request()->has('holders')) {
+            $hol=explode('-',$holders);
+
+            $min_holders=$hol[0];
+            $max_holders=$hol[1];
+            $query = $query->whereBetween('holders', [$min_holders, $max_holders]);
+        }
+        if (request()->has('code')) {
+            $query = $query->where('github', '!=', null);
+        }
+        // if (request()->has('owner')) {
+        //     $query = $query->where('owner', '!=', null);
+        // }
+        // if (request()->has('seller')) {
+        //     $query = $query->where('seller', '!=', null);
+        // }
+        if (request()->has('web')) {
+            $query = $query->where('offical_site', '!=', null);
+        }
+        if (request()->has('telegram')) {
+            $query = $query->where('telegram', '!=', null);
+        }
+        if (request()->has('twitter')) {
+            $query = $query->where('twitter', '!=', null);
+        }
+
+        $filtered = $query->get();
+
+
+    return redirect()->back()->with('filtereddata',$filtered);
+
+
 
     }
 
