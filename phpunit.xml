@@ -20,6 +20,9 @@
       <extensions>
         <extension class="Symfony\Component\Panther\ServerExtension" />
     </extensions>
+     <listeners>
+        <listener class="Symfony\Component\Panther\ServerListener" />
+    </listeners>
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>

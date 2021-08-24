@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="css/style.css">
      <link rel="icon" type="image/png" href="images/logo.png"/>
     <title>MrChecker</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7233339810508092"
+     crossorigin="anonymous"></script>
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7233339810508092"
+     crossorigin="anonymous"></script>
+
 
     <style>
-    i{
-        cursor: pointer;
-        }
+
           .pagination li:hover{
               cursor: pointer;
           }
@@ -24,7 +27,7 @@
               margin-left:.5rem;
             background: purple ;
 
-            border: 2px solid white;
+            border: 0px solid white;
             -webkit-user-select: none !important;
           }
           li span{
@@ -41,6 +44,9 @@
             float: right;
             color: white;
           }
+          .page-link {
+              padding:0.3rem 0.3rem !important;
+            }
 
     </style>
 </head>
@@ -59,13 +65,14 @@
                             <p class="text-white">Find Gems In BSC</p>
                         </span>
                         <span class="float-xl-right ml-3 ml-xl-0 d-inline-block ">
-                            <a href="" class=""><i class="fab fa-twitter site-color-l"></i></a>
-                            <a href=""> <i class="fab fa-telegram-plane site-color-l"></i></a>
+                            <a href="https://twitter.com/MrCryptoFamily" class=""><i class="fab fa-twitter site-color-l"></i></a>
+                            <a href="https://t.me/MrCryptoFinance"> <i class="fab fa-telegram-plane site-color-l"></i></a>
                         </span>
                         <div class="filters  my-3 " id="filter-parent">
-                            <form action="/filter-record" method="get" enctype="multipart/form-data">
+                            <form action="/" method="get">
                                 <div class="filter-select ">
                                     <div class="d-flex justify-content-center flex-column ">
+
                                         <div class="time p-1">
                                             <div class="row">
                                                 <span class="col">
@@ -88,6 +95,8 @@
                                                         <option value="10" class="text-black">10 HOURS</option>
                                                         <option value="11" class="text-black">11 HOURS</option>
                                                         <option value="12" class="text-black">12 HOURS</option>
+                                                        <option value="24" class="text-black">24 HOURS</option>
+                                                        <option value="36" class="text-black">36 HOURS</option>
                                                     </select></span>
                                             </div>
                                         </div>
@@ -98,14 +107,15 @@
                                                     <label for="Liquidity">Liquidity:</label>
                                                 </span>
                                                 <span class="col">
-                                                    <select name="liquidity"
+                                                     <select name="liquidity"
                                                         class="form-control rounded-0 bg-transparent text-primary border-primary"
                                                         id="Liquidity">
                                                         <option value="" class="text-black">Select</option>
-                                                        <option value="0-1000" class="text-black">0-1000</option>
-                                                        <option value="1000-5000" class="text-black">1000-5000</option>
-                                                        <option value="5000-10000" class="text-black">5000-10000</option>
-                                                         <option value="10000-50000" class="text-black">10000-50000</option>
+                                                        <option value="6000-10000" class="text-black">6000-10000</option>
+                                                        <option value="10000-15000" class="text-black">10000-15000</option>
+                                                        <option value="15000-30000" class="text-black">15000-30000</option>
+                                                         <option value="30000-50000" class="text-black">30000-50000</option>
+                                                         <option value="50000-100000" class="text-black">+ 50000</option>
 
                                                     </select></span>
                                             </div>
@@ -117,7 +127,7 @@
                                                     <label for="Max-Holder">Max Holder:</label>
                                                 </span>
                                                 <span class="col">
-                                                    <select name="holders" class="form-control rounded-0 bg-transparent text-primary border-primary " id="Max-Holder">
+                                                       <select name="holders" class="form-control rounded-0 bg-transparent text-primary border-primary " id="Max-Holder">
                                                     <option value="" class="text-black">Select</option>
                                                     <option value="1-10" class="text-black">1-10</option>
                                                    <option value="11-20" class="text-black">11-20</option>
@@ -137,33 +147,33 @@
                                     <div class="select">
                                         <div class="select-child-div">
                                             <input type="checkbox" name="owner" value="owner"> <span class=""><i
-                                                    class="fas fa-user-alt mr-1 text-white mr-1 ml-2"></i>
+                                                    class=" mr-1 text-white mr-1 ml-2"></i>
                                                 Owner renounced </span>
                                         </div>
                                         <div class="select-child-div">
                                             <input type="checkbox" name="sellers" value="sellers"> <span class=""><i
-                                                    class="fas fa-money-bill-alt text-white mr-1 ml-2"></i>
+                                                    class=" text-white mr-1 ml-2"></i>
                                                 Exist sellers</span>
                                         </div>
                                         <div class="select-child-div">
                                             <input type="checkbox" name="code" value="code"> <span class=""><i
-                                                    class="fas fa-file-contract text-white mr-1 ml-2"></i> Code is correct </span>
+                                                    class=" text-white mr-1 ml-2"></i> Code is correct </span>
                                         </div>
                                         <div class="select-child-div">
                                             <input type="checkbox" name="telegram" value="telegram"> <span class=""><i
-                                                    class="fab fa-telegram-plane text-white mr-1 ml-2"></i>
+                                                    class=" text-white mr-1 ml-2"></i>
                                                 Have Telegram </span>
                                         </div>
                                         <div class="select-child-div">
                                             <input type="checkbox" name="twitter" value="twitter"> <span class=""><i
-                                                    class="fab fa-twitter text-white mr-1 ml-2"></i> Have Twitter</span>
+                                                    class="text-white mr-1 ml-2"></i> Have Twitter</span>
                                         </div>
                                         <div class="select-child-div">
                                             <input type="checkbox" name="web" value="web"> <span class=""><i
-                                                    class="fas fa-desktop text-white mr-1 ml-2"></i> Have Web </span>
+                                                    class="text-white mr-1 ml-2"></i> Have Web </span>
                                         </div>
                                     </div>
-                                    <div class="btn-filter mt-5">
+                                     <div class="btn-filter mt-5">
                                         <input type="submit" class="btn  btn-primary" value="Filters">
                                     </div>
                                 </div>
@@ -172,7 +182,7 @@
                     </div>
 
 
-                    {{--  <div class="heading-site p-3">
+                    <!-- <div class="heading-site p-3">
                         <a href="index.html" class="d-block">
                             <i class="fas fa-fist-raised  site-color-l"></i>
                             <h4 class="site-logo-name d-inline-block site-color pl-3 font-weight-bold">Crypto Fighter
@@ -185,15 +195,15 @@
                             <a href="" class=""><i class="fab fa-twitter site-color-l"></i></a>
                             <a href=""> <i class="fab fa-telegram-plane site-color-l"></i></a>
                         </span>
-                    </div>
-                      <div class="donation-box">
+                    </div> -->
+                    <!-- <div class="donation-box">
                         <h5 class="font-weight-bold ">Donations (BSC)</h5>
                         <button class="btn btn-primary  ">0xa282F2F8BEB7D45678....
                             <i class="fas fa-copy font-size-xs "></i></button>
-                    </div>
+                    </div> -->
 
 
-                    <div class="search-box">
+                    <!-- <div class="search-box">
                         <h5 class="font-weight-bold py-2">Search tokens</h5>
                         <div class="input-group ">
                             <input  type="text"
@@ -205,10 +215,10 @@
                                 </button>
                             </div>
                         </div>
-                    </div>   --}}
+                    </div> -->
 
                     <!-- footer start -->
-                    {{--  <footer class="mt-4 d-none d-xl-block">
+                    <!-- <footer class="mt-4 d-none d-xl-block">
                         <div class="promote-coin py-3">
                             <a href="" class="btn  btn-sm btn-outline-success d-inline-block rounded-0">Promote Your
                                 Coin</a>
@@ -222,7 +232,7 @@
                             <a href=""> <i class="fab fa-telegram-plane site-color-l"></i></a>
                         </span>
                         <small class="d-inline-block site-color-d ">Theme Design by Fastech.com</small>
-                    </footer> --}}
+                    </footer> -->
                 </div>
             </div>
             <!-- right side main dive start -->
@@ -270,6 +280,15 @@
                     <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
                     <!-- filter place empty now  -->
 
+                    <!--<select class="form-control" style="width: 7%;margin-bottom: 1%;" id="maxRows">-->
+                    <!--    <option value="10">10</option>-->
+                    <!--    <option value="15">15</option>-->
+                    <!--    <option value="20">20</option>-->
+                    <!--    <option value="50">50</option>-->
+                    <!--    <option value="70">70</option>-->
+                    <!--    <option value="100">100</option>-->
+                    <!--    <option value="5000">ALL</option>-->
+                    <!--   </select>-->
 
                     <!-- table start -->
                     <div class="table-responsive ">
@@ -288,10 +307,10 @@
                                     <th class="text-center">Owner</th>
                                     <th class="text-center">Seller</th>
                                     <th class="text-center" style="min-width: 100px">Holders
-                                        <span class="float-right">
-                                            <i class="fas fa-long-arrow-alt-up text-secondary m-0"></i>
-                                            <i class="fas fa-long-arrow-alt-down text-secondary m-0"></i>
-                                        </span>
+                                        <!--<span class="float-right">-->
+                                        <!--    <i class="fas fa-long-arrow-alt-up text-secondary m-0"></i>-->
+                                        <!--    <i class="fas fa-long-arrow-alt-down text-secondary m-0"></i>-->
+                                        <!--</span>-->
                                     </th>
                                     <th class="text-center">Liquidity</th>
                                     <th class="text-center"></th>
@@ -300,53 +319,6 @@
                             </thead>
                             <!-- table body start -->
                             <tbody  id="myTable">
-                                @if (Session::has('filtereddata'))
-                                <?php
-                                $filtereddata= Session::get('filtereddata');
-
-
-                                ?>
-                                @foreach ($filtereddata as $filtered)
-                                <?php
-                                $name= explode("(",$filtered->name);
-                                ?>
-                                <tr style="background-color: red" class="text-center">
-                                    <td class="align-middle"><a target="_blank" href="https://poocoin.app/tokens/{{$filtered->smart_chain}}">{{$name[0]}}</a></td>
-                                    <td class="align-middle">{{\Carbon\Carbon::createFromTimeStamp(strtotime($filtered->created_at))->addHour(7)->diffForHumans()}}</td>
-                                    <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/{{ $filtered->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
-                                    <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $filtered->smart_chain }}&v={{ $filtered->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
-                                    <td class="align-middle"><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
-                                    <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $filtered->holders }} </td>
-                                    <td class="align-middle">{{$filtered->price}}</td>
-                                    <td class="align-middle">@if($filtered->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $filtered->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($filtered->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $filtered->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($filtered->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $filtered->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
-                                    <td class="align-middle" style="min-width: 210px;">
-                                        <span class="d-flex flex-row">
-                                            <div class="">
-
-                                                <div class="bg-warning my-1 d-block px-2 py-1 rounded">
-                                                    <a target="_blank" href="https://pancakeswap.finance/swap?outputCurrency='{{$filtered->smart_chain}}'" class="text-drbg" >
-                                                        Buy on Pancakeswap
-                                                        </a>
-                                                </div>
-                                                <div class="bg-warning my-1 d-block px-2 py-1 rounded">
-                                                    <a target="_blank" href="https://poocoin.app/tokens/'{{$filtered->smart_chain}}'" class="text-drbg">
-                                                        Watch Chart
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="pt-4 pl-3">
-                                                <form method="GET" action="/token">
-                                                    <input  name="token" type="hidden" value="{{ $filtered->smart_chain }}">
-                                                <button type="submit" style="border: none;background: none;" ><i
-                                                        class="fas fa-share-alt text-primary font-size-xl"></i></button>
-                                                </form>
-                                            </div>
-                                        </span>
-                                    </td>
-                                </tr>
-                                @endforeach
-
-                                @endif
                                 @if (Session::has('check'))
                                 <?php
                                 $check= Session::get('check');
@@ -357,9 +329,11 @@
                                     <td class="align-middle">{{\Carbon\Carbon::createFromTimeStamp(strtotime($check->created_at))->addHour(7)->diffForHumans()}}</td>
                                     <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/{{ $check->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
                                     <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $check->smart_chain }}&v={{ $check->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
-                                    <td class="align-middle"><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+                                    <td class="align-middle">{{$check->seller  }}
+                                        {{--  <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting">  --}}
+                                    </td>
                                     <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $check->holders }} </td>
-                                    <td class="align-middle">{{$check->price}}</td>
+                                    <td class="align-middle">${{$check->price}}</td>
                                     <td class="align-middle">@if($check->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $check->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($check->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $check->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($check->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $check->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
                                     <td class="align-middle" style="min-width: 210px;">
                                         <span class="d-flex flex-row">
@@ -401,7 +375,7 @@
                                     <td class="align-middle" ><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $row->smart_chain }}&v={{ $row->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
                                     <td class="align-middle" ><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
                                     <td class="align-middle" ><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $row->holders }} </td>
-                                    <td class="align-middle" >{{$row->price}}</td>
+                                    <td class="align-middle" >${{$row->price}}</td>
                                     <td class="align-middle" >@if($row->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $row->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($row->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $row->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($row->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $row->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>
                                     <td class="align-middle"  style="min-width: 210px;">
                                         <span class="d-flex flex-row">
@@ -433,29 +407,58 @@
                         </table>
 
                            <!-- pagination start -->
-                        <nav aria-label="Page navigation example" style="margin-left:5%">
-                          <ul class="pagination">
+                           <div>
+                        <nav aria-label="Page navigation example" style="text-align:center">
+                          <ul class="pagination" style="justify-content:center" >
                             <!--<li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
                             @for($i=1; $i <= $page_count; $i++)
-                            <li class="page-item"><a class="page-link" href="#">{{$i}}</a></li>
+                                <li class="page-item"><a class="page-link" href="/?page_no={{$i}}">{{$i}}</a></li>
                             @endfor
+                                <li class="page-item"><a class="page-link" href="/?page_no={{$end_page}}">Last</a></li>
                             <!--<li class="page-item"><a class="page-link" href="#">Next</a></li>-->
                           </ul>
                         </nav>
+                        </div>
                         <!-- pagination end -->
+
+
+
+                        <script type='text/javascript'>
+
+                            function myFunction()
+                            {
+                              var tokenvalue = document.getElementById("tokenvalue").value;
+
+                              $.ajax({
+                                url: '/token',
+                                type: 'get',
+                                data: {tokenvalue:tokenvalue},
+                                dataType: 'json',
+                                success:function(response){
+
+
+
+
+                                }
+                            });
+
+                            }
+
+                            </script>
+                        <!--		Start Pagination -->
 
                         <!-- add banner -->
                         <div class="add-box-banner p-5 bg-light mx-auto my-2"></div>
                     </div>
-
+                    <!-- <div class="bg-dark p-3 text-center">No data available in table</div> -->
                 </div>
                 <div class="">
                     <footer class="mt-4  text-center bg-site-dark py-3">
-                        <div class="promote-coin py-3">
-                            <a href="" class="btn  btn-sm btn-outline-success d-inline-block rounded-0">Promote Your
-                                Coin</a>
-                            <a href="" class="btn btn-sm btn-primary d-inline-block">Help</a>
-                        </div>
+                        <!--<div class="promote-coin py-3">-->
+                        <!--    <a href="" class="btn  btn-sm btn-outline-success d-inline-block rounded-0">Promote Your-->
+                        <!--        Coin</a>-->
+                        <!--    <a href="" class="btn btn-sm btn-primary d-inline-block">Help</a>-->
+                        <!--</div>-->
                         <span class="d-inline-block mx-auto">
                             <p class="m-0">© MrCheckers</p>
                         </span>
@@ -464,7 +467,7 @@
                         <!--    <a href=""> <i class="fab fa-telegram-plane site-color-l"></i></a>-->
                         <!--</span> -->
                         <div>
-                        <ul class="wp-block-social-links aligncenter has-large-icon-size has-icon-color has-icon-background-color items-justified-center is-style-default" style="display:flex; justify-content:center;list-style: none;">
+                        <ul class="wp-block-social-links aligncenter has-large-icon-size has-icon-color has-icon-background-color items-justified-center is-style-default" style="display:flex; justify-content:center">
                             <li style="color: #111a22; background-color: var(--nv-primary-accent); " class="wp-social-link wp-social-link-twitter wp-block-social-link">
                                 <a href="https://twitter.com/MrCryptoFamily" aria-label="https://twitter.com/MrCryptoFamily" rel="noopener nofollow" target="_blank" class="wp-block-social-link-anchor">
                                      <svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
@@ -520,6 +523,8 @@
                 success: function( res ) {
                     if(res.msg == true){
                         $('#myTable tr:first').before(res.data);
+
+                        $('#myTable tr:last').hide();
 
 
                     }
@@ -667,6 +672,7 @@ function FilterkeyWord_all_table() {
 }
 
     </script>
+
 </body>
 
 </html>

@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 // use Codenixsv\CoinGeckoApi\CoinGeckoClient;
 use Curl\Curl;
-use Illuminate\Support\Carbon;
 use Goutte\Client;
-use App\Models\Coin;
 use Symfony\Component\HttpClient\HttpClient;
 // use Goutte\Client;
 // use Symfony\Component\Panther\Client;
 use Longman\TelegramBot\Entities\Update;
 use Telegram\Bot\Api;
+use Carbon\Carbon;
+use App\Models\Coin;
 
 use function GuzzleHttp\Promise\each;
 
@@ -155,7 +155,7 @@ class UserController extends Controller
         // dd($data[0],$data[1][0],$data[2][0]);
         $data[2][0] = str_replace(' contract:','',$data[2][0]);
         $data[1][0] = str_replace('Liquidity: ','',$data[1][0]);
-        $data[0] = str_replace('🥞 New pair at Pancakeswap V2 🥞','',$data[0]);
+        $data[0] = str_replace('ðŸ¥ž New pair at Pancakeswap V2 ðŸ¥ž','',$data[0]);
 
         if(DB::table('coins')->where('name',$data[0])->first()){
             DB::table('coins')->orderBy('id','desc')->limit(1)->delete();
@@ -227,7 +227,15 @@ class UserController extends Controller
                 DB::table('coins')->insert([
                     'name' => $data->result[0]->channel_post['text']
                 ]);
+
                 $data = DB::table('coins')->orderBy('id','desc')->pluck('name')->first();
+                 if(strpos($data, "Powered By TeleFeed") !== false ){
+                    DB::table('coins')->orderBy('id','desc')->limit(1)->delete();
+
+                    $res = (object) null;
+                    $res->msg = false;
+                    return $res;
+                }
                 $data = explode('Initial', $data);
                 $data[1] = explode('Token', $data[1]);
                 $data[2] = explode('DEXTools:', $data[1][1]);
@@ -235,7 +243,10 @@ class UserController extends Controller
              //dd($data[0],$data[1][0],$data[2][0]);
             $data[2][0] = str_replace(' contract:','',$data[2][0]);
             $data[1][0] = str_replace('Liquidity: ','',$data[1][0]);
-            $data[0] = str_replace('🥞 New pair at Pancakeswap V2 🥞','',$data[0]);
+
+
+
+
 
         if(DB::table('coins')->where('name',$data[0])->first()){
             DB::table('coins')->orderBy('id','desc')->limit(1)->delete();
@@ -245,6 +256,7 @@ class UserController extends Controller
             return $res;
         }
         else{
+            $data[0] = str_replace('🥞 New pair at PancakeSwap V2 🥞','',$data[0]);
             $token=$data[2][0];
 
            $token= preg_replace("/\s+/", "", $token);
@@ -334,11 +346,53 @@ class UserController extends Controller
     $pr=explode("$",$data[1][0]);
     $pric = str_replace(',','',$pr[1]);
 
+    $ch = curl_init();
+
+    // set url
+    curl_setopt($ch, CURLOPT_URL, 'https://app.scrapingbee.com/api/v1/?api_key=58I5XPC2YS6ZA0KUT1ZZ5M35Z71RO0GXDYHYRZ65R5OGXS162HXZYBY7UVQB7QDL3BCD8OUYIULZAIC7&url=https%3A%2F%2Fbscscan.com%2Ftoken%2F'.$token);
+
+    // set method
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+    // return the transfer as a string
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+    // send the request and save response to $response
+    $response = curl_exec($ch);
+
+    // stop if fails
+    if (!$response) {
+      die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
+    }
+    $result=[];
+
+    libxml_use_internal_errors(true);
+    $doc = new \DOMDocument();
+    $doc->loadHTML($response);
+    $xpath = new \DOMXPath($doc);
+    // $trans_name=$xpath->evaluate('//div[@id="ContentPlaceHolder1_trNoOfTxns"]//div[@class="row align-items-center"]//div[@class="col-md-4 mb-1 mb-md-0"]');
+
+    $trans = $xpath->evaluate('//div[@class="col-md-8"]//span[@id="totaltxns"]');
+    // dd($val);
+     foreach ($trans as $key => $transfer) {
+
+        //  echo $trans_name[$key]->textContent . $transfer->textContent;
+         $result['transfer'] =$transfer->textContent;
+    }
+
+            $transfer=$result['transfer'];
+
+        curl_close($ch);
+
+
+
+
              DB::table('coins')->insert([
             'name' => $data[0],
             'smart_chain' => $data[2][0],
             'price' =>$pric,
             'holders'=> $holders,
+            'seller'=>$transfer,
             'offical_site'=>$site_url,
             'reddit'=>$reddit,
             'github'=>$github,
@@ -379,9 +433,11 @@ class UserController extends Controller
             <td class="align-middle">'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->addHour(7)->diffForHumans().'</td>
             <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/'.$obj->smart_chain.'#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
             <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a='.$obj->smart_chain .'&v='. $obj->smart_chain.'&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
-            <td class="align-middle"><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
-            <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>0</td>
-            <td class="align-middle"><!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"> -->'.$pric.'</td>
+            <td class="align-middle">'.$transfer.'
+            // <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting">
+            </td>
+            <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>'.$holders.'</td>
+            <td class="align-middle"><!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"> -->$'.$pric.'</td>
             <td class="align-middle">'.$telegram_data.''.$twitter_data.''.$official_data.'</td>
             <td class="align-middle"><span class="d-flex flex-row"><div class="">
                                         <div class="bg-warning my-1 d-block px-2 py-1 rounded">
@@ -419,8 +475,15 @@ class UserController extends Controller
             }
     }
 
+    public function searchtoken(){
+        $token=request()->query('token');
+        // dd($token);
+        $check=DB::table('coins')->where('name', 'like', '%' . $token . '%')->orWhere('smart_chain', 'like', '%' . $token . '%')->first();
+        return redirect()->back()->with('check',$check);
 
-    public function filterRecord()
+    }
+
+     public function filterRecord()
     {
         $hours=request()->query('time');
         $newDateTime = Carbon::now()->subHours($hours);
@@ -474,13 +537,6 @@ class UserController extends Controller
 
 
     return redirect()->back()->with('filtereddata',$filtered);
-
-    }
-    public function searchtoken(){
-        $token=request()->query('token');
-        // dd($token);
-        $check=DB::table('coins')->where('name', 'like', '%' . $token . '%')->orWhere('smart_chain', 'like', '%' . $token . '%')->first();
-        return redirect()->back()->with('check',$check);
 
     }
 
