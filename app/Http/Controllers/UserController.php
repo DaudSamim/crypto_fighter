@@ -244,10 +244,6 @@ class UserController extends Controller
             $data[2][0] = str_replace(' contract:','',$data[2][0]);
             $data[1][0] = str_replace('Liquidity: ','',$data[1][0]);
 
-
-
-
-
         if(DB::table('coins')->where('name',$data[0])->first()){
             DB::table('coins')->orderBy('id','desc')->limit(1)->delete();
 
@@ -258,7 +254,6 @@ class UserController extends Controller
         else{
             $data[0] = str_replace('🥞 New pair at PancakeSwap V2 🥞','',$data[0]);
             $token=$data[2][0];
-
            $token= preg_replace("/\s+/", "", $token);
 
             $client = new Client();
@@ -268,7 +263,6 @@ class UserController extends Controller
             $key=null;
             $text=  $crawler->filter('div[class="card-body"]')->text();
             $dataw=explode(' ',$text);
-
 
                 $target = "Holders:";
                 if (in_array($target, $dataw)) {
@@ -346,8 +340,8 @@ class UserController extends Controller
     $pr=explode("$",$data[1][0]);
     $pric = str_replace(',','',$pr[1]);
 
-    $ch = curl_init();
 
+    $ch = curl_init();
     // set url
     curl_setopt($ch, CURLOPT_URL, 'https://app.scrapingbee.com/api/v1/?api_key=58I5XPC2YS6ZA0KUT1ZZ5M35Z71RO0GXDYHYRZ65R5OGXS162HXZYBY7UVQB7QDL3BCD8OUYIULZAIC7&url=https%3A%2F%2Fbscscan.com%2Ftoken%2F'.$token);
 
@@ -385,13 +379,68 @@ class UserController extends Controller
         curl_close($ch);
 
 
+        require '../vendor/autoload.php';
 
+        $httpClient2 = new \GuzzleHttp\Client();
+
+        $response = $httpClient2->get('https://bscscan.com/address/'.$token.'#code');
+        $htmlString2 = (string) $response->getBody();
+
+        // HTML is often wonky, this suppresses a lot of warnings
+        libxml_use_internal_errors(true);
+
+        $doc2 = new \DOMDocument();
+        $doc2->loadHTML($htmlString2);
+        $xpath2 = new \DOMXPath($doc2);
+        $code = $xpath2->evaluate('//div[@class="col-md-12"]//h3[@class="h6 text-dark font-weight-bold mb-4"]//strong');
+        //  dd($code);
+        $result2=[];
+        foreach ($code as $key => $coder) {
+            $result2['code'] =$coder->textContent;
+        }
+        $code_verifed=null;
+        if(empty($result2)){
+           $code_verifed=0;
+        }
+        else{
+            $code_verifed=1;
+        }
+
+        $httpClient3 = new \GuzzleHttp\Client();
+        $response3 = $httpClient3->get('https://bscscan.com/readContract?m=normal&a='.$token.'&v='.$token.'&t=false');
+        $htmlString3 = (string) $response3->getBody();
+
+        // HTML is often wonky, this suppresses a lot of warnings
+        libxml_use_internal_errors(true);
+
+        $doc3 = new \DOMDocument();
+        $doc3->loadHTML($htmlString3);
+        $xpath3 = new \DOMXPath($doc3);
+
+        $owner = $xpath3->evaluate('//div[@class="alert alert-warning mb-0"]');
+
+        // dd($owner);
+        $result3=[];
+        foreach ($owner as $key => $own) {
+
+            $result3['owner'] =$own->textContent;
+        }
+        $owner_verifed=null;
+            if(empty($result3))
+            {
+                $owner_verifed=1;
+            }
+            elseif($result3['owner']=="Sorry, we were unable to retrieve a valid Contract ABI for this contract. Unable to read contract information"){
+           $owner_verifed=0;
+             }
 
              DB::table('coins')->insert([
             'name' => $data[0],
             'smart_chain' => $data[2][0],
             'price' =>$pric,
             'holders'=> $holders,
+            'code'=> $code_verifed,
+            'owner'=> $owner_verifed,
             'seller'=>$transfer,
             'offical_site'=>$site_url,
             'reddit'=>$reddit,
@@ -429,13 +478,29 @@ class UserController extends Controller
                     else{
                         $official_data='<a href="'.$site_url.'"><i class="fa fa-globe text-success font-size-xl" ></i></a>';
                     }
+                    if($code_verifed==1){
+                        $code_status='<i class="fas fa-check-circle text-success font-size-xl"></i>';
+                    }
+                    else{
+                    $code_status='<i class="fas fa-times-circle text-danger font-size-xl"></i>';
+                    }
+                    if($owner_verifed==1){
+                        $owner_status='<i class="fas fa-check-circle text-success font-size-xl"></i>';
+                    }
+                    else{
+                    $owner_status='<i class="fas fa-times-circle text-danger font-size-xl"></i>';
+                    }
+                    if($transfer >=500){
+                        $trnasfer_status='<i class="fas fa-check-circle text-success font-size-xl"></i>';
+                    }
+                    else{
+                    $trnasfer_status='<i class="fas fa-times-circle text-danger font-size-xl"></i>';
+                    }
                         $res->data = '<tr class="text-center"><td class="align-middle"><a target="_blank" href="https://poocoin.app/tokens/'.$obj->smart_chain.'">'.$name[0].'</a></td>
             <td class="align-middle">'.\Carbon\Carbon::createFromTimeStamp(strtotime($obj->created_at))->addHour(7)->diffForHumans().'</td>
-            <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/'.$obj->smart_chain.'#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
-            <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a='.$obj->smart_chain .'&v='. $obj->smart_chain.'&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
-            <td class="align-middle">'.$transfer.'
-            // <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting">
-            </td>
+            <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/'.$obj->smart_chain.'#code">'.$code_status.'</a></td>
+            <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a='.$obj->smart_chain .'&v='. $obj->smart_chain.'&t=false">'.$owner_status.'</a></td>
+            <td class="align-middle">'.$trnasfer_status.'</td>
             <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i>'.$holders.'</td>
             <td class="align-middle"><!-- <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"> -->$'.$pric.'</td>
             <td class="align-middle">'.$telegram_data.''.$twitter_data.''.$official_data.'</td>

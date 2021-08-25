@@ -327,9 +327,9 @@
                                 <tr style="background-color: red" class="text-center">
                                     <td class="align-middle"><a target="_blank" href="https://poocoin.app/tokens/{{$check->smart_chain}}">{{$name[0]}}</a></td>
                                     <td class="align-middle">{{\Carbon\Carbon::createFromTimeStamp(strtotime($check->created_at))->addHour(7)->diffForHumans()}}</td>
-                                    <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/{{ $check->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
-                                    <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $check->smart_chain }}&v={{ $check->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
-                                    <td class="align-middle">{{$check->seller  }}
+                                    <td class="align-middle"><a target="_blank" href="https://bscscan.com/address/{{ $check->smart_chain }}#code">@if($check->code==1)<i class="fas fa-check-circle text-success font-size-xl"></i>@else <i class="fas fa-times-circle text-danger font-size-xl"></i> @endif</a></td>
+                                    <td class="align-middle"><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $check->smart_chain }}&v={{ $check->smart_chain }}&t=false">@if($check->owner==1)<i class="fas fa-check-circle text-success font-size-xl"></i>@else <i class="fas fa-times-circle text-danger font-size-xl"></i> @endif</a></td>
+                                    <td class="align-middle">@if($check->seller >=500)<i class="fas fa-check-circle text-success font-size-xl"></i>@else <i class="fas fa-times-circle text-danger font-size-xl"></i> @endif
                                         {{--  <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting">  --}}
                                     </td>
                                     <td class="align-middle"><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $check->holders }} </td>
@@ -371,9 +371,11 @@
                                 <tr class="text-center">
                                     <td class="align-middle" ><a target="_blank" href="https://poocoin.app/tokens/{{$row->smart_chain}}">{{$name[0]}}</a></td>
                                     <td class="align-middle" >{{\Carbon\Carbon::createFromTimeStamp(strtotime($row->created_at))->addHour(7)->diffForHumans()}}</td>
-                                    <td class="align-middle" ><a target="_blank" href="https://bscscan.com/address/{{ $row->smart_chain }}#code"><i class="fas fa-check-circle text-success font-size-xl"></i></a></td>
-                                    <td class="align-middle" ><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $row->smart_chain }}&v={{ $row->smart_chain }}&t=false"><i class="fas fa-times-circle text-danger font-size-xl"></i></a></td>
-                                    <td class="align-middle" ><img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting"></td>
+                                    <td class="align-middle" ><a target="_blank" href="https://bscscan.com/address/{{ $row->smart_chain }}#code">@if($row->code==1)<i class="fas fa-check-circle text-success font-size-xl"></i>@else <i class="fas fa-times-circle text-danger font-size-xl"></i> @endif</a></td>
+                                    <td class="align-middle" ><a target="_blank" href="https://bscscan.com/readContract?m=normal&a={{ $row->smart_chain }}&v={{ $row->smart_chain }}&t=false">@if($row->owner==1)<i class="fas fa-check-circle text-success font-size-xl"></i>@else <i class="fas fa-times-circle text-danger font-size-xl"></i> @endif</a></td>
+                                    <td class="align-middle" >@if($row->seller >=500)<i class="fas fa-check-circle text-success font-size-xl"></i>@else <i class="fas fa-times-circle text-danger font-size-xl"></i> @endif
+                                        {{--  <img src="img/3020989.png" class="img-fluid " style="height: 35px;" alt="Waitting">  --}}
+                                    </td>
                                     <td class="align-middle" ><i class="fas fa-exclamation-triangle font-size-xl text-warning mr-3"></i> {{ $row->holders }} </td>
                                     <td class="align-middle" >${{$row->price}}</td>
                                     <td class="align-middle" >@if($row->telegram ==null) <i class="fas fa-paper-plane font-size-xl"></i>  @else<a href="{{ $row->telegram }}"><i class="fas fa-paper-plane font-size-xl text-success"></i></a>  @endif @if($row->twitter ==null)<i class="fab fa-twitter font-size-xl"></i> @else<a href="{{ $row->twitter }}"><i class="fab fa-twitter text-success font-size-xl"></i></a>  @endif @if($row->offical_site ==null) <i class="fa fa-globe font-size-xl" ></i> @else<a href="{{ $row->offical_site }}"><i class="fa fa-globe text-success font-size-xl" ></i></a>  @endif</td>

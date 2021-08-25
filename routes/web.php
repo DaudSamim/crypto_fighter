@@ -94,14 +94,14 @@ Route::middleware('guest')->group(function ()
 
         }
         if (request()->has('code')) {
-            $query = $query->where('github', '!=', null);
+            $query = $query->where('code', 1);
         }
-        // if (request()->has('owner')) {
-        //     $query = $query->where('owner', '!=', null);
-        // }
-        // if (request()->has('seller')) {
-        //     $query = $query->where('seller', '!=', null);
-        // }
+        if (request()->has('owner')) {
+            $query = $query->where('owner',1);
+        }
+        if (request()->has('sellers')) {
+            $query = $query->where('seller', '>=', 500);
+        }
         if (request()->has('web')) {
             $query = $query->where('offical_site', '!=', null);
         }
